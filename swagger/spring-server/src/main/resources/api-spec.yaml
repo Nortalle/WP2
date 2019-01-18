@@ -1,0 +1,485 @@
+swagger: "2.0"
+info:
+  description: "This is the specification for the gamification project"
+  version: "1.0.0"
+  title: "Swagger Gamification"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "vincent.guidoux1@heig-vd.ch"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/api"
+tags:
+  - name: "badges"
+    description: "Everything about the badges"
+  - name: "pointScales"
+    description: "Everything about the pointScales"
+schemes:
+  - "http"
+parameters:
+  token:
+    in: header
+    name: authorization
+    type: string
+    required: true
+  badgeId:
+    in: path
+    name: badgeId
+    type: string
+    required: true
+  pointScaleId:
+    in: path
+    name: pointScaleId
+    type: string
+    required: true
+  ruleId:
+    in: path
+    name: ruleId
+    type: string
+    required: true
+paths:
+  /badges:
+    post:
+      tags:
+        - "badges"
+      summary: "Creates a badge"
+      description: "Creates a badge"
+      operationId: "createBadge"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "badge to create"
+          schema:
+            $ref: "#/definitions/badgeWrite"
+      responses:
+        200:
+          description: "successful operation - here's your id"
+          schema:
+            type: string
+    get:
+      tags:
+        - "badges"
+      summary: "Get all badges for one application"
+      description: "Get all badges for one application"
+      operationId: "getBadges"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/badgeRead"
+        400:
+          description: "something very very bad happened"
+  /badges/{badgeId}:
+    parameters:
+      - $ref: '#/parameters/badgeId'
+    get:
+      tags:
+        - "badges"
+      summary: "Get badge by ID"
+      description: "Get one badge of the application using its id"
+      operationId: "getBadge"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/badgeRead"
+        400:
+          description: "something very very bad happened"
+    put:
+      tags:
+        - "badges"
+      summary: "Update an existing badge"
+      description: "Update an existing badge"
+      operationId: "updateBadge"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "badge that needs to be update in the store"
+          schema:
+            $ref: "#/definitions/badgeWrite"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Badge not found"
+        405:
+          description: "Validation exception"
+    delete:
+      tags:
+        - "badges"
+      summary: "Deletes a badge"
+      description: "Deletes a badge"
+      operationId: "deleteBadge"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+      responses:
+        200:
+          description: "successfull operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Badge not found"
+
+  /pointScales:
+    post:
+      tags:
+        - "pointScales"
+      summary: "Creates a point scale"
+      description: "Creates a point scale"
+      operationId: "createPointScale"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "pointScale to create"
+          schema:
+            $ref: "#/definitions/pointScaleWrite"
+      responses:
+        200:
+          description: "successful operation - here's your id"
+          schema:
+            type: string
+    get:
+      tags:
+        - "pointScales"
+      summary: "Get all point scales for one application"
+      description: "Get all point scales for one application"
+      operationId: "getPointScales"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/pointScaleRead"
+        400:
+          description: "something very very bad happened"
+  /pointScales/{pointScaleId}:
+    get:
+      tags:
+        - "pointScales"
+      summary: "Get a specific point scale for one application"
+      description: "Get a specific point scale for one application"
+      operationId: "getPointScale"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/pointScaleRead"
+        400:
+          description: "something very very bad happened"
+    parameters:
+      - $ref: '#/parameters/pointScaleId'
+    put:
+      tags:
+        - "pointScales"
+      summary: "Update an existing point scale"
+      description: "Update an existing point scale"
+      operationId: "updatePointScale"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "point scale that needs to be update in the store"
+          schema:
+            $ref: "#/definitions/pointScaleWrite"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "pointScale not found"
+        405:
+          description: "Validation exception"
+    delete:
+      tags:
+        - "pointScales"
+      summary: "Deletes a point scale"
+      description: "Deletes a point scale"
+      operationId: "deletePointScale"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+      responses:
+        200:
+          description: "successfull operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Point scale not found"
+  /rules:
+    post:
+      tags:
+        - "rules"
+      summary: "Creates a rule"
+      description: "Creates a rule"
+      operationId: "createRule"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "rule to create"
+          schema:
+            $ref: "#/definitions/ruleWrite"
+      responses:
+        200:
+          description: "successful operation - here's your id"
+          schema:
+            type: string
+    get:
+      tags:
+        - "rules"
+      summary: "Get all rules for one application"
+      description: "Get all rules for one application"
+      operationId: "getRules"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/ruleRead"
+        400:
+          description: "something very very bad happened"
+  /rules/{ruleId}:
+    parameters:
+      - $ref: '#/parameters/ruleId'
+    get:
+      tags:
+        - "rules"
+      summary: "Get a specific rule for one application"
+      description: "Get a specific rule for one application"
+      operationId: "getRule"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ruleRead"
+        400:
+          description: "something very very bad happened"
+    put:
+      tags:
+        - "rules"
+      summary: "Update an existing rule"
+      description: "Update an existing rule"
+      operationId: "updateRule"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "rule that needs to be update in the store"
+          schema:
+            $ref: "#/definitions/ruleWrite"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "rule not found"
+        405:
+          description: "Validation exception"
+    delete:
+      tags:
+        - "rules"
+      summary: "Deletes a rule"
+      description: "Deletes a rule"
+      operationId: "deleteRule"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+      responses:
+        200:
+          description: "successfull operation"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Point scale not found"
+  /events:
+    post:
+      tags:
+        - "events"
+      summary: "Creates an event"
+      description: "Creates an event"
+      operationId: "createEvent"
+      produces:
+        - "application/json"
+      parameters:
+        - $ref: '#/parameters/token'
+        - in: "body"
+          name: "body"
+          description: "event to create"
+          schema:
+            $ref: "#/definitions/event"
+      responses:
+        200:
+          description: "successful operation"
+
+definitions:
+  pointScaleWrite:
+    type: object
+    required:
+      - name
+      - description
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+  pointScaleRead:
+    allOf:
+      - $ref: '#/definitions/pointScaleWrite'
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+  badgeWrite:
+    type: object
+    required:
+      - name
+      - image
+      - visible
+    properties:
+      name:
+        type: string
+      image:
+        type: string
+      visible:
+        type: boolean
+  badgeRead:
+    allOf:
+      - $ref: '#/definitions/badgeWrite'
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+  ruleWrite:
+    type: object
+    required:
+      - if
+      - then
+    properties:
+      if:
+        $ref: '#/definitions/if'
+      then:
+        $ref: '#/definitions/then'
+  ruleRead:
+    type: object
+    allOf:
+      - $ref: '#/definitions/ruleWrite'
+    required:
+      - id
+    properties:
+      id:
+        type: string
+  if:
+    type: object
+    required:
+      - events
+    properties:
+      events:
+        type: array
+        items:
+          $ref: '#/definitions/event'
+  then:
+    type: object
+    properties:
+      awardBadge:
+        type: array
+        items:
+          $ref: '#/definitions/badgeRead'
+      awardPoints:
+        type: array
+        items:
+          $ref: awardPoint
+  awardPoint:
+    type: object
+    required:
+      - pointScale
+      - amount
+    properties:
+      pointScale:
+        $ref: '#/definitions/pointScaleRead'
+      amount:
+        type: integer
+  event:
+    type: object
+    required:
+      - userId
+      - name
+      - timestamp
+    properties:
+      userId:
+        type: string
+      name:
+        type: string
+      timestamp:
+        type: string
+      property:
+        type: object
+        properties:
+          name:
+            type: string
+          level:
+            type: integer
