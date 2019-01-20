@@ -31,7 +31,7 @@ public class PointScalesApiController implements PointScalesApi {
     public ResponseEntity<String> createPointScale(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                    @ApiParam(value = "pointScale to create"  ) @RequestBody PointScaleWrite body){
 
-        PointScaleEntity pointScaleEntity = toPointScaleEntity(body);
+        PointScaleEntity pointScaleEntity = toPointScaleEntity(body, authorization);
 
         pointScaleRepository.save(pointScaleEntity);
 
@@ -45,20 +45,27 @@ public class PointScalesApiController implements PointScalesApi {
     @Override
     public ResponseEntity<Void> deletePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                  @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
-        return null;
+
+        pointScaleRepository.delete(pointScaleId);
+
+        return ResponseEntity.accepted().build();
     }
 
     @Override
     public ResponseEntity<PointScaleRead> getPointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                         @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
-        return null;
+        PointScaleEntity badgeEntity = pointScaleRepository.findOne(pointScaleId);
+
+        PointScaleRead pointScaleRead = toPointScaleRead(badgeEntity);
+
+        return ResponseEntity.ok(pointScaleRead);
     }
 
     @Override
     public ResponseEntity<List<PointScaleRead>> getPointScales(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         List<PointScaleRead> pointScaleReads = new ArrayList<>();
 
-        for(PointScaleEntity pointScaleEntity : pointScaleRepository.findAll()){
+        for(PointScaleEntity pointScaleEntity : pointScaleRepository.findAllByApiKey(authorization)){
             pointScaleReads.add(toPointScaleRead(pointScaleEntity));
         }
         return ResponseEntity.ok(pointScaleReads);
@@ -68,13 +75,25 @@ public class PointScalesApiController implements PointScalesApi {
     public ResponseEntity<Void> updatePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                  @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                  @ApiParam(value = "point scale that needs to be update in the store"  ) @RequestBody PointScaleWrite body){
-        return null;
+
+        PointScaleEntity pointScaleEntity = toPointScaleEntity(body, authorization, pointScaleId);
+
+        pointScaleRepository.save(pointScaleEntity);
+
+        return ResponseEntity.ok().build();
     }
 
-    private PointScaleEntity toPointScaleEntity(PointScaleWrite pointScaleWrite){
+    private PointScaleEntity toPointScaleEntity(PointScaleWrite badge, String apiKey, Long pointScaleId){
+        PointScaleEntity pointScaleEntity = toPointScaleEntity(badge, apiKey);
+        pointScaleEntity.setId(pointScaleId);
+        return pointScaleEntity;
+    }
+
+    private PointScaleEntity toPointScaleEntity(PointScaleWrite pointScaleWrite, String apiKey){
         PointScaleEntity pointScaleEntity = new PointScaleEntity();
         pointScaleEntity.setName(pointScaleWrite.getName());
         pointScaleEntity.setDescription(pointScaleWrite.getDescription());
+        pointScaleEntity.setApiKey(apiKey);
 
         return pointScaleEntity;
     }

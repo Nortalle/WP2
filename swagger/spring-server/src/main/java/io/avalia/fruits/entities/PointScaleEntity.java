@@ -19,6 +19,8 @@ public class PointScaleEntity implements Serializable {
     private String name;
     private String description;
 
+    private String apiKey;
+
     public long getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class PointScaleEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 }
