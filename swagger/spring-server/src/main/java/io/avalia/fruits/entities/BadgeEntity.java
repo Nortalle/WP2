@@ -18,6 +18,8 @@ public class BadgeEntity implements Serializable {
 
     private String name;
     private String image;
+
+    private String apiKey;
     private boolean visible;
 
     public long getId() {
@@ -42,6 +44,14 @@ public class BadgeEntity implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 
     public boolean isVisible() {

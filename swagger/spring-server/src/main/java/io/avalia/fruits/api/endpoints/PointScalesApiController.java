@@ -43,13 +43,13 @@ public class PointScalesApiController implements PointScalesApi {
     }
 
     @Override
-    public ResponseEntity<Void> deletePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") String pointScaleId,
+    public ResponseEntity<Void> deletePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                  @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         return null;
     }
 
     @Override
-    public ResponseEntity<PointScaleRead> getPointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") String pointScaleId,
+    public ResponseEntity<PointScaleRead> getPointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                         @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         return null;
     }
@@ -65,7 +65,7 @@ public class PointScalesApiController implements PointScalesApi {
     }
 
     @Override
-    public ResponseEntity<Void> updatePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") String pointScaleId,
+    public ResponseEntity<Void> updatePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                  @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                  @ApiParam(value = "point scale that needs to be update in the store"  ) @RequestBody PointScaleWrite body){
         return null;

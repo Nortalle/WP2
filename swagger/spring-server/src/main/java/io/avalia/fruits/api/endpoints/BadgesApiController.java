@@ -29,7 +29,7 @@ public class BadgesApiController implements BadgesApi {
     @Override
     public ResponseEntity<String> createBadge(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                               @ApiParam(value = "badge to create"  ) @RequestBody BadgeWrite body) {
-        BadgeEntity badgeEntity = toBadgeEntity(body);
+        BadgeEntity badgeEntity = toBadgeEntity(body, authorization);
 
         badgesRepository.save(badgeEntity);
 
@@ -41,42 +41,67 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") String badgeId,
+    public ResponseEntity<Void> deleteBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") Long badgeId,
                                      @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
-        return null;
+
+        badgesRepository.delete(badgeId);
+
+        return ResponseEntity.accepted().build();
     }
 
-    @Override
-    public ResponseEntity<BadgeRead> getBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") String badgeId,
-                                              @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
-        return null;
-    }
 
     @Override
     public ResponseEntity<List<BadgeRead>> getBadges(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         List<BadgeRead> badgeReads = new ArrayList<>();
 
-        for(BadgeEntity badgeEntity : badgesRepository.findAll()){
+        for(BadgeEntity badgeEntity : badgesRepository.findAllByApiKey(authorization)){
             badgeReads.add(toBadgeRead(badgeEntity));
         }
         return ResponseEntity.ok(badgeReads);
     }
-
     @Override
-    public ResponseEntity<Void> updateBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") String badgeId,
-                                            @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
-                                            @ApiParam(value = "badge that needs to be update in the store"  ) @RequestBody BadgeWrite body){
-        return null;
+    public ResponseEntity<BadgeRead> getBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") Long badgeId,
+                                       @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization) {
+
+        BadgeEntity badgeEntity = badgesRepository.findOne(badgeId);
+
+        BadgeRead badgeRead = toBadgeRead(badgeEntity);
+
+        return ResponseEntity.ok(badgeRead);
+
     }
 
-    private BadgeEntity toBadgeEntity(BadgeWrite badge){
+    @Override
+    public ResponseEntity<Void> updateBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") Long badgeId,
+                                            @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
+                                            @ApiParam(value = "badge that needs to be update in the store"  ) @RequestBody BadgeWrite body){
+
+        BadgeEntity badgeEntity = toBadgeEntity(body, authorization, badgeId);
+
+        badgesRepository.save(badgeEntity);
+
+        return ResponseEntity.ok().build();
+    }
+
+    private BadgeEntity toBadgeEntity(BadgeWrite badge, String apiKey, Long badgeId){
+        BadgeEntity badgeEntity = toBadgeEntity(badge, apiKey);
+        badgeEntity.setId(badgeId);
+        return badgeEntity;
+    }
+
+
+
+    private BadgeEntity toBadgeEntity(BadgeWrite badge, String apiKey){
         BadgeEntity badgeEntity = new BadgeEntity();
         badgeEntity.setName(badge.getName());
         badgeEntity.setImage(badge.getImage());
+        badgeEntity.setApiKey(apiKey);
         badgeEntity.setVisible(badge.getVisible());
 
         return badgeEntity;
     }
+
+
 
     private BadgeRead toBadgeRead(BadgeEntity badgeEntity){
         BadgeRead badgeRead = new BadgeRead();

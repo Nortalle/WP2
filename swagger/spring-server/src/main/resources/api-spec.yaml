@@ -27,12 +27,14 @@ parameters:
   badgeId:
     in: path
     name: badgeId
-    type: string
+    type: integer
+    format: int64
     required: true
   pointScaleId:
     in: path
     name: pointScaleId
-    type: string
+    type: integer
+    format: int64
     required: true
   ruleId:
     in: path
