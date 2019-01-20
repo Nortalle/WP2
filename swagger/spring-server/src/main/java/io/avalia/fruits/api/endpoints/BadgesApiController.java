@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,17 +41,19 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<Void> deleteBadge(String badgeId, String authorization) {
+    public ResponseEntity<Void> deleteBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") String badgeId,
+                                     @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         return null;
     }
 
     @Override
-    public ResponseEntity<BadgeRead> getBadge(String badgeId, String authorization) {
+    public ResponseEntity<BadgeRead> getBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") String badgeId,
+                                              @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         return null;
     }
 
     @Override
-    public ResponseEntity<List<BadgeRead>> getBadges(String authorization) {
+    public ResponseEntity<List<BadgeRead>> getBadges(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         List<BadgeRead> badgeReads = new ArrayList<>();
 
         for(BadgeEntity badgeEntity : badgesRepository.findAll()){
@@ -60,7 +63,9 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<Void> updateBadge(String badgeId, String authorization, BadgeWrite body) {
+    public ResponseEntity<Void> updateBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") String badgeId,
+                                            @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
+                                            @ApiParam(value = "badge that needs to be update in the store"  ) @RequestBody BadgeWrite body){
         return null;
     }
 
@@ -78,6 +83,7 @@ public class BadgesApiController implements BadgesApi {
         badgeRead.setName(badgeEntity.getName());
         badgeRead.setImage(badgeEntity.getImage());
         badgeRead.setVisible(badgeEntity.isVisible());
+        badgeRead.setId(badgeEntity.getId());
 
         return badgeRead;
     }

@@ -384,14 +384,19 @@ definitions:
       description:
         type: string
   pointScaleRead:
-    allOf:
-      - $ref: '#/definitions/pointScaleWrite'
     type: object
     required:
+      - name
+      - description
       - id
     properties:
-      id:
+      name:
         type: string
+      description:
+        type: string
+      id:
+        type: integer
+        format: int64
   badgeWrite:
     type: object
     required:
@@ -406,14 +411,22 @@ definitions:
       visible:
         type: boolean
   badgeRead:
-    allOf:
-      - $ref: '#/definitions/badgeWrite'
     type: object
     required:
+      - name
+      - image
+      - visible
       - id
     properties:
-      id:
+      name:
         type: string
+      image:
+        type: string
+      visible:
+        type: boolean
+      id:
+        type: integer
+        format: int64
   ruleWrite:
     type: object
     required:
