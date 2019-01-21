@@ -27,12 +27,14 @@ parameters:
   badgeId:
     in: path
     name: badgeId
-    type: string
+    type: integer
+    format: int64
     required: true
   pointScaleId:
     in: path
     name: pointScaleId
-    type: string
+    type: integer
+    format: int64
     required: true
   ruleId:
     in: path
@@ -384,14 +386,19 @@ definitions:
       description:
         type: string
   pointScaleRead:
-    allOf:
-      - $ref: '#/definitions/pointScaleWrite'
     type: object
     required:
+      - name
+      - description
       - id
     properties:
-      id:
+      name:
         type: string
+      description:
+        type: string
+      id:
+        type: integer
+        format: int64
   badgeWrite:
     type: object
     required:
@@ -406,14 +413,22 @@ definitions:
       visible:
         type: boolean
   badgeRead:
-    allOf:
-      - $ref: '#/definitions/badgeWrite'
     type: object
     required:
+      - name
+      - image
+      - visible
       - id
     properties:
-      id:
+      name:
         type: string
+      image:
+        type: string
+      visible:
+        type: boolean
+      id:
+        type: integer
+        format: int64
   ruleWrite:
     type: object
     required:
@@ -421,38 +436,49 @@ definitions:
       - then
     properties:
       if:
-        $ref: '#/definitions/if'
+        type: object
+        required:
+          - events
+        properties:
+          events:
+            type: array
+            items:
+              $ref: '#/definitions/event'
       then:
-        $ref: '#/definitions/then'
+        type: object
+        properties:
+          awardBadge:
+            type: array
+            items:
+              $ref: '#/definitions/badgeRead'
+          awardPoints:
+            type: array
+            items:
+              $ref: awardPoint
   ruleRead:
     type: object
-    allOf:
-      - $ref: '#/definitions/ruleWrite'
     required:
       - id
+      - if
+      - then
     properties:
       id:
         type: string
-  if:
-    type: object
-    required:
-      - events
-    properties:
-      events:
-        type: array
-        items:
-          $ref: '#/definitions/event'
-  then:
-    type: object
-    properties:
-      awardBadge:
-        type: array
-        items:
-          $ref: '#/definitions/badgeRead'
-      awardPoints:
-        type: array
-        items:
-          $ref: awardPoint
+      if:
+        type: object
+        required:
+          - event
+        properties:
+          event:
+            $ref: '#/definitions/event'
+      then:
+        type: object
+        properties:
+          awardBadge:
+            $ref: '#/definitions/badgeRead'
+          awardPoint:
+            $ref: '#/definitions/awardPoint'
+
   awardPoint:
     type: object
     required:
@@ -468,13 +494,10 @@ definitions:
     required:
       - userId
       - name
-      - timestamp
     properties:
       userId:
         type: string
       name:
-        type: string
-      timestamp:
         type: string
       property:
         type: object

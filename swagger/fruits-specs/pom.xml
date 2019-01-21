@@ -15,7 +15,7 @@
     <jodatime-version>2.9.4</jodatime-version>
     <okhttp-version>2.7.5</okhttp-version>
     <gson-version>2.6.2</gson-version>
-    <io.avalia.fruits.server.url>http://localhost:8080/api/</io.avalia.fruits.server.url>
+    <io.AMT.gamification.server.url>http://localhost:8080/api/</io.AMT.gamification.server.url>
   </properties>
   <build>
     <testResources>
@@ -43,8 +43,8 @@
               <library>okhttp-gson</library>
               <configOptions>
                 <sourceFolder>.</sourceFolder>
-                <modelPackage>io.avalia.fruits.api.dto</modelPackage>
-                <apiPackage>io.avalia.fruits.api</apiPackage>
+                <modelPackage>io.AMT.gamification.api.dto</modelPackage>
+                <apiPackage>io.AMT.gamification.api</apiPackage>
               </configOptions>
               <output>target/generated-sources/swagger</output>
             </configuration>

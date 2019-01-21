@@ -49,10 +49,10 @@
                                 <useBeanValidation>true</useBeanValidation>
                                 <interfaceOnly>true</interfaceOnly>
                                 <delegatePattern>false</delegatePattern>
-                                <apiPackage>io.avalia.fruits.api</apiPackage>
-                                <configPackage>io.avalia.fruits.config</configPackage>
-                                <basePackage>io.avalia.fruits</basePackage>
-                                <modelPackage>io.avalia.fruits.api.model</modelPackage>
+                                <apiPackage>io.AMT.gamification.api</apiPackage>
+                                <configPackage>io.AMT.gamification.config</configPackage>
+                                <basePackage>io.AMT.gamification</basePackage>
+                                <modelPackage>io.AMT.gamification.api.model</modelPackage>
                             </configOptions>
                         </configuration>
                     </execution>

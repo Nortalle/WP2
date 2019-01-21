@@ -1,9 +1,9 @@
-Feature: Creation of fruits
+Feature: Creation of badges
 
   Background:
-    Given there is a Fruits server
+    Given there is a Gamification server
 
-  Scenario: create a fruit
-    Given I have a fruit payload
-    When I POST it to the /fruits endpoint
+  Scenario: create a badge
+    Given I have a badge payload
+    When I POST it to the /badges endpoint
     Then I receive a 201 status code
