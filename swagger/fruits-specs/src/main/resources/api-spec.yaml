@@ -39,7 +39,8 @@ parameters:
   ruleId:
     in: path
     name: ruleId
-    type: string
+    type: integer
+    format: int64
     required: true
 paths:
   /badges:
@@ -438,23 +439,22 @@ definitions:
       if:
         type: object
         required:
-          - events
+          - eventType
         properties:
-          events:
-            type: array
-            items:
-              $ref: '#/definitions/event'
+          eventType:
+            type: string
+          propertyName:
+            type: string
+          propertyCondition:
+            type: string
       then:
         type: object
         properties:
-          awardBadge:
-            type: array
-            items:
-              $ref: '#/definitions/badgeRead'
-          awardPoints:
-            type: array
-            items:
-              $ref: awardPoint
+          badgeId:
+            type: integer
+            format: int64
+          awardPoint:
+            $ref: '#/definitions/awardPoint'
   ruleRead:
     type: object
     required:
@@ -463,44 +463,52 @@ definitions:
       - then
     properties:
       id:
-        type: string
+        type: integer
+        format: int64
       if:
         type: object
         required:
-          - event
+          - eventType
         properties:
-          event:
-            $ref: '#/definitions/event'
+          eventType:
+            type: string
+          propertyName:
+            type: string
+          propertyCondition:
+            type: string
       then:
         type: object
         properties:
-          awardBadge:
-            $ref: '#/definitions/badgeRead'
+          badgeId:
+            type: integer
+            format: int64
           awardPoint:
             $ref: '#/definitions/awardPoint'
 
   awardPoint:
     type: object
     required:
-      - pointScale
+      - pointScaleId
       - amount
     properties:
-      pointScale:
-        $ref: '#/definitions/pointScaleRead'
+      pointScaleId:
+        type: integer
+        format: int64
       amount:
         type: integer
   event:
     type: object
     required:
       - userId
-      - name
+      - type
     properties:
       userId:
+        type: integer
+        format: int64
+      type:
         type: string
-      name:
-        type: string
-      property:
-        type: object
+      properties:
+        type: object #could be an array in an other version
         properties:
           name:
             type: string
