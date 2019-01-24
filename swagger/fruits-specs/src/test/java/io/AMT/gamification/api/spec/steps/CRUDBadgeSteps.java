@@ -12,6 +12,7 @@ import io.AMT.gamification.api.dto.BadgeRead;
 import org.junit.Assert;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class CRUDBadgeSteps {
 
     private BadgeWrite badgesWrite;
     private BadgeRead badgeRead;
+    List<BadgeRead> badgeReads = new ArrayList<>();
 
     private ApiResponse lastApiResponse;
     private ApiException lastApiException;
@@ -108,6 +110,16 @@ public class CRUDBadgeSteps {
         Assert.assertNull(badgeRead);
     }
     */
+
+    @When("^I GET it to the /badges endpoint$")
+    public void i_GET_it_to_the_badges_endpoint() throws Throwable {
+        badgeReads = badgesApi.getBadges(token1);
+    }
+
+    @Then("^I recieve an array of badges$")
+    public void i_recieve_an_array_of_badges() throws Throwable {
+        assertNotNull(badgeReads);
+    }
 
     private void getIdFromLocation(String location){
         String[] segments = location.split("/");

@@ -19,3 +19,7 @@ Feature: CRUD Operations on Badge
   #  When I POST it to the /badges endpoint
   #  When I GET it to the /badges/badgeId endpoint with wrong token
   #  Then I a recieve a response containing a null
+
+  Scenario: get list of all badges
+    When I GET it to the /badges endpoint
+    Then I recieve an array of badges
