@@ -68,7 +68,11 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<BadgeRead> getBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") Long badgeId,
                                        @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization) {
 
-        BadgeEntity badgeEntity = badgesRepository.findOne(badgeId);
+        BadgeEntity badgeEntity = badgesRepository.findByApiKeyAndId(authorization,badgeId);
+
+        if(badgeEntity == null){
+            return ResponseEntity.status(401).build();
+        }
 
         BadgeRead badgeRead = converterService.toBadgeRead(badgeEntity);
 
@@ -85,6 +89,6 @@ public class BadgesApiController implements BadgesApi {
 
         badgesRepository.save(badgeEntity);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(204).build();
     }
 }

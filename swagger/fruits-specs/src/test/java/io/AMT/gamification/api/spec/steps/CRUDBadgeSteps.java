@@ -100,17 +100,27 @@ public class CRUDBadgeSteps {
         assertEquals(expected, badgeRead);
     }
 
-    /*
+
     @When("^I GET it to the /badges/badgeId endpoint with wrong token$")
     public void i_GET_it_to_the_badges_badgeId_endpoint_with_wrong_token() throws Throwable {
-        badgeRead = badgesApi.getBadge(badgeId, wrongToken);
+        try {
+            lastApiResponse = badgesApi.getBadgeWithHttpInfo(badgeId, wrongToken);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
     }
 
-    @Then("^I a recieve a response containing a null$")
+    @Then("^I a recieve a response containing a 401 error$")
     public void i_a_recieve_a_response_containing_a_null() throws Throwable {
-        Assert.assertNull(badgeRead);
+        Assert.assertEquals(401, lastStatusCode);
     }
-    */
+
 
     @When("^I GET it to the /badges endpoint$")
     public void i_GET_it_to_the_badges_endpoint() throws Throwable {

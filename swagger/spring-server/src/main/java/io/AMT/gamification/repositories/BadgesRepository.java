@@ -11,5 +11,6 @@ import java.util.List;
 public interface BadgesRepository extends CrudRepository<BadgeEntity, Long>{
 
     List<BadgeEntity> findAllByApiKey(String apiKey);
+    BadgeEntity findByApiKeyAndId(String apiKey, Long id);
 
 }
