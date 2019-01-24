@@ -12,6 +12,8 @@ public class UserEntity implements Serializable {
     @Id
     private long id;
 
+    private String apiKey;
+
     public long getId() {
         return id;
     }
@@ -20,4 +22,12 @@ public class UserEntity implements Serializable {
         this.id = id;
     }
 
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
 }

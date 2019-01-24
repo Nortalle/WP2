@@ -4,6 +4,7 @@ import io.AMT.gamification.api.RulesApi;
 import io.AMT.gamification.api.model.RuleRead;
 import io.AMT.gamification.api.model.RuleWrite;
 import io.AMT.gamification.entities.RuleEntity;
+import io.AMT.gamification.repositories.BadgesRepository;
 import io.AMT.gamification.repositories.RulesRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,17 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-07-26T19:36:34.802Z")
+
 @Controller
 public class RulesApiController implements RulesApi {
     
     @Autowired
     RulesRepository rulesRepository;
+
+    @Autowired
+    BadgesRepository badgesRepository;
 
     @Override
     public ResponseEntity<String> createRule(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
@@ -91,7 +98,7 @@ public class RulesApiController implements RulesApi {
         ruleEntity.setIfEventType(ruleWrite.getIfEventType());
         ruleEntity.setIfPropertyName(ruleWrite.getIfPropertyName());
         ruleEntity.setIfPropertyCondition(ruleWrite.getIfPropertyCondition());
-        ruleEntity.setThenBadgeId(ruleWrite.getThenBadgeId());
+        ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
         ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
         ruleEntity.setThenPointScaleId(ruleWrite.getThenPointScaleId());
 
@@ -104,7 +111,7 @@ public class RulesApiController implements RulesApi {
         ruleRead.setIfEventType(ruleEntity.getIfEventType());
         ruleRead.setIfPropertyName(ruleEntity.getIfPropertyName());
         ruleRead.setIfPropertyCondition(ruleEntity.getIfPropertyCondition());
-        ruleRead.setThenBadgeId(ruleEntity.getThenBadgeId());
+        ruleRead.setThenBadgeId(ruleEntity.getBadge().getId());
         ruleRead.setThenPointScaleId(ruleEntity.getThenPointScaleId());
         ruleRead.setThenAwardPoint(ruleEntity.getThenAwardPoint());
 
