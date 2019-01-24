@@ -171,6 +171,16 @@ public class CRUDBadgeSteps {
         assertEquals(204, lastStatusCode);
     }
 
+    @When("^I GET to the /badges/badgeId with wrong badgeId$")
+    public void i_GET_to_the_badges_badgeId_with_wrong_badgeId() throws Throwable {
+        badgeRead = badgesApi.getBadge(badgeId + 1, token1);
+    }
+
+    @Then("^I recieve a (\\d+) error not found$")
+    public void i_recieve_a_error(int arg1) throws Throwable {
+        assertEquals(404, lastStatusCode);
+    }
+
 
 
     private void getIdFromLocation(String location){

@@ -20,6 +20,12 @@ Feature: CRUD Operations on Badge
     When I GET it to the /badges/badgeId endpoint with wrong token
     Then I a recieve a response containing a 401 error
 
+  Scenario: cant get a badge with wrong id
+    Given I have a badge payload
+    When I POST it to the /badges endpoint
+    And  I GET to the /badges/badgeId with wrong badgeId
+    Then I recieve a 404 error not found
+
   Scenario: get list of all badges
     When I GET it to the /badges endpoint
     Then I recieve an array of badges
@@ -32,3 +38,8 @@ Feature: CRUD Operations on Badge
     Then I receive a 204 status code for badge update
     When I GET it to the /badges/badgeId endpoint
     Then I recieve the modified badge
+
+
+
+
+
