@@ -34,24 +34,40 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<String> createBadge(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                               @ApiParam(value = "badge to create"  ) @RequestBody BadgeWrite body) {
 
-        BadgeEntity badgeEntity = converterService.toBadgeEntity(body, authorization);
+        //BadgeEntity badgeEntity = badgesRepository.findByApiKeyAndName(authorization, body.getName());
 
-        badgesRepository.save(badgeEntity);
+        BadgeEntity badgeEntity = null;
 
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(badgeEntity.getId()).toUri();
+        if(badgeEntity == null) {
+            badgeEntity = converterService.toBadgeEntity(body, authorization);
 
-        return ResponseEntity.created(location).build();
+            badgesRepository.save(badgeEntity);
+
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentRequest().path("/{id}")
+                    .buildAndExpand(badgeEntity.getId()).toUri();
+
+            return ResponseEntity.created(location).build();
+        } else {
+            return ResponseEntity.noContent().build();//204
+        }
     }
 
     @Override
     public ResponseEntity<Void> deleteBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") Long badgeId,
                                      @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
+        BadgeEntity badgeEntity = badgesRepository.findOne(badgeId);
+
+        if(badgeEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!badgeEntity.getApiKey().equals(authorization)){
+            return ResponseEntity.status(401).build();
+        }
 
         badgesRepository.delete(badgeId);
 
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.noContent().build();//204
+
     }
 
 
@@ -62,21 +78,23 @@ public class BadgesApiController implements BadgesApi {
         for(BadgeEntity badgeEntity : badgesRepository.findAllByApiKey(authorization)){
             badgeReads.add(converterService.toBadgeRead(badgeEntity));
         }
-        return ResponseEntity.ok(badgeReads);
+        return ResponseEntity.ok(badgeReads);//200
     }
     @Override
     public ResponseEntity<BadgeRead> getBadge(@ApiParam(value = "",required=true ) @PathVariable("badgeId") Long badgeId,
                                        @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization) {
 
-        BadgeEntity badgeEntity = badgesRepository.findByApiKeyAndId(authorization,badgeId);
+        BadgeEntity badgeEntity = badgesRepository.findOne(badgeId);
 
         if(badgeEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!badgeEntity.getApiKey().equals(authorization)){
             return ResponseEntity.status(401).build();
         }
 
         BadgeRead badgeRead = converterService.toBadgeRead(badgeEntity);
 
-        return ResponseEntity.ok(badgeRead);
+        return ResponseEntity.ok(badgeRead);//200
 
     }
 
@@ -85,7 +103,16 @@ public class BadgesApiController implements BadgesApi {
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                             @ApiParam(value = "badge that needs to be update in the store"  ) @RequestBody BadgeWrite body){
 
-        BadgeEntity badgeEntity = converterService.toBadgeEntity(body, authorization, badgeId);
+
+        BadgeEntity badgeEntity = badgesRepository.findOne(badgeId);
+
+        if(badgeEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!badgeEntity.getApiKey().equals(authorization)){
+            return ResponseEntity.status(401).build();
+        }
+
+        badgeEntity = converterService.toBadgeEntity(body, authorization, badgeId);
 
         badgesRepository.save(badgeEntity);
 
