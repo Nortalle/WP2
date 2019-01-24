@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface BadgeAwardRepository extends CrudRepository<BadgeAwardEntity, Long> {
 
-    public BadgeAwardEntity findBadgeAwardEntitiesByBadgeEntity(Long id);
 
 
     public List<BadgeAwardEntity> findBadgeAwardEntitiesByUserEntity_Id(Long id);
