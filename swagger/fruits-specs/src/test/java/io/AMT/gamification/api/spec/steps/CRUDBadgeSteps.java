@@ -25,6 +25,7 @@ public class CRUDBadgeSteps {
     private BadgesApi badgesApi;
 
     private BadgeWrite badgesWrite;
+    private BadgeWrite newBadge;
     private BadgeRead badgeRead;
     List<BadgeRead> badgeReads = new ArrayList<>();
 
@@ -121,13 +122,53 @@ public class CRUDBadgeSteps {
         assertNotNull(badgeReads);
     }
 
+    @Given("^I have a update badge payload$")
+    public void i_have_a_update_badge_payload() throws Throwable {
+        newBadge = new BadgeWrite();
+        newBadge.setName("newBadge");
+        newBadge.setImage("newBadge");
+        newBadge.setVisible(false);
+        assertNotNull(newBadge);
+    }
+
+    @When("^I PUT it to the /badges/badgeId endpoint$")
+    public void i_PUT_it_to_the_badges_badgeId_endpoint() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.updateBadgeWithHttpInfo(badgeId, token1, newBadge);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+    @Then("^I recieve the modified badge$")
+    public void i_recieve_the_modified_badge() throws Throwable {
+        BadgeRead expected = new BadgeRead();
+        expected.setImage("newBadge");
+        expected.setName("newBadge");
+        expected.setVisible(false);
+        expected.setId(badgeId);
+        assertEquals(expected, badgeRead);
+    }
+
+    @Then("^I receive a (\\d+) status code for badge update$")
+    public void i_receive_a_status_code_for_badge_update(int arg1) throws Throwable {
+        assertEquals(204, lastStatusCode);
+    }
+
+
+
     private void getIdFromLocation(String location){
         String[] segments = location.split("/");
         String almostIdStr =  segments[segments.length-1];
         String idStr = almostIdStr.substring(0,almostIdStr.length()-1);
         badgeId = Long.parseLong(idStr);
     }
-
 
 
 

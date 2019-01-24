@@ -23,3 +23,12 @@ Feature: CRUD Operations on Badge
   Scenario: get list of all badges
     When I GET it to the /badges endpoint
     Then I recieve an array of badges
+
+  #Scenario: update values of a badge after recently creating it
+  #  Given I have a badge payload
+  #  When I POST it to the /badges endpoint
+  #  Given I have a update badge payload
+  #  When I PUT it to the /badges/badgeId endpoint
+  #  Then I receive a 204 status code for badge update
+  #  When I GET it to the /badges/badgeId endpoint
+  #  Then I recieve the modified badge
