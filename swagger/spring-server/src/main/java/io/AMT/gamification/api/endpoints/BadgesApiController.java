@@ -29,6 +29,7 @@ public class BadgesApiController implements BadgesApi {
     @Override
     public ResponseEntity<String> createBadge(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                               @ApiParam(value = "badge to create"  ) @RequestBody BadgeWrite body) {
+
         BadgeEntity badgeEntity = toBadgeEntity(body, authorization);
 
         badgesRepository.save(badgeEntity);

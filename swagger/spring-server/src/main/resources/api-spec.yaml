@@ -16,6 +16,8 @@ tags:
     description: "Everything about the badges"
   - name: "pointScales"
     description: "Everything about the pointScales"
+  - name: "rules"
+    description: "Everything about the rules"
 schemes:
   - "http"
 parameters:
@@ -478,16 +480,15 @@ definitions:
     required:
       - userId
       - type
+      - propertyName
+      - propertyDefinition
     properties:
       userId:
         type: integer
         format: int64
       type:
         type: string
-      properties:
-        type: object #could be an array in an other version
-        properties:
-          name:
-            type: string
-          level:
-            type: integer
+      propertyName:
+        type: string
+      propertyDefinition:
+        type: string

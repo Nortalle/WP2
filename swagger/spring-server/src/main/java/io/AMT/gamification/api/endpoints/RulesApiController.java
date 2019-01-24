@@ -4,10 +4,12 @@ import io.AMT.gamification.api.RulesApi;
 import io.AMT.gamification.api.model.RuleRead;
 import io.AMT.gamification.api.model.RuleWrite;
 import io.AMT.gamification.entities.RuleEntity;
+import io.AMT.gamification.repositories.BadgesRepository;
 import io.AMT.gamification.repositories.RulesRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,12 +19,18 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-07-26T19:36:34.802Z")
+
+@Controller
 public class RulesApiController implements RulesApi {
     
     @Autowired
     RulesRepository rulesRepository;
-    
-    
+
+    @Autowired
+    BadgesRepository badgesRepository;
+
     @Override
     public ResponseEntity<String> createRule(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                              @ApiParam(value = "rule to create"  ) @RequestBody RuleWrite body) {
@@ -31,15 +39,12 @@ public class RulesApiController implements RulesApi {
 
         rulesRepository.save(ruleEntity);
 
-
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(ruleEntity.getId()).toUri();
 
         return ResponseEntity.created(location).build();
     }
-
-
 
     @Override
     public  ResponseEntity<Void> deleteRule(@ApiParam(value = "",required=true ) @PathVariable("ruleId") Long ruleId,
@@ -78,7 +83,6 @@ public class RulesApiController implements RulesApi {
         rulesRepository.save(ruleEntity);
 
         return ResponseEntity.ok().build();
-
     }
 
     private RuleEntity toRuleEntity(RuleWrite ruleWrite, String apiKey, Long ruleId){
@@ -94,7 +98,7 @@ public class RulesApiController implements RulesApi {
         ruleEntity.setIfEventType(ruleWrite.getIfEventType());
         ruleEntity.setIfPropertyName(ruleWrite.getIfPropertyName());
         ruleEntity.setIfPropertyCondition(ruleWrite.getIfPropertyCondition());
-        ruleEntity.setThenBadgeId(ruleWrite.getThenBadgeId());
+        ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
         ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
         ruleEntity.setThenPointScaleId(ruleWrite.getThenPointScaleId());
 
@@ -107,7 +111,7 @@ public class RulesApiController implements RulesApi {
         ruleRead.setIfEventType(ruleEntity.getIfEventType());
         ruleRead.setIfPropertyName(ruleEntity.getIfPropertyName());
         ruleRead.setIfPropertyCondition(ruleEntity.getIfPropertyCondition());
-        ruleRead.setThenBadgeId(ruleEntity.getThenBadgeId());
+        ruleRead.setThenBadgeId(ruleEntity.getBadge().getId());
         ruleRead.setThenPointScaleId(ruleEntity.getThenPointScaleId());
         ruleRead.setThenAwardPoint(ruleEntity.getThenAwardPoint());
 
