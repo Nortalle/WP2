@@ -433,68 +433,45 @@ definitions:
   ruleWrite:
     type: object
     required:
-      - if
-      - then
+      - ifEventType
     properties:
-      if:
-        type: object
-        required:
-          - eventType
-        properties:
-          eventType:
-            type: string
-          propertyName:
-            type: string
-          propertyCondition:
-            type: string
-      then:
-        type: object
-        properties:
-          badgeId:
-            type: integer
-            format: int64
-          awardPoint:
-            $ref: '#/definitions/awardPoint'
+      ifEventType:
+        type: string
+      ifPropertyName:
+        type: string
+      ifPropertyCondition:
+        type: string
+      thenBadgeId:
+        type: integer
+        format: int64
+      thenPointScaleId:
+        type: integer
+        format: int64
+      thenAwardPoint:
+        type: integer
   ruleRead:
     type: object
     required:
       - id
-      - if
+      - ifEventType
       - then
     properties:
       id:
         type: integer
         format: int64
-      if:
-        type: object
-        required:
-          - eventType
-        properties:
-          eventType:
-            type: string
-          propertyName:
-            type: string
-          propertyCondition:
-            type: string
-      then:
-        type: object
-        properties:
-          badgeId:
-            type: integer
-            format: int64
-          awardPoint:
-            $ref: '#/definitions/awardPoint'
-
-  awardPoint:
-    type: object
-    required:
-      - pointScaleId
-      - amount
-    properties:
-      pointScaleId:
+      ifEventType:
+        type: string
+      ifPropertyName:
+        type: string
+      ifPropertyCondition:
+        type: string
+      thenBadgeId:
         type: integer
         format: int64
-      amount:
+      thenPointScaleId:
+        type: integer
+        format: int64
+      thenAwardPoint:
         type: integer
   event:
     type: object
