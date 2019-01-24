@@ -12,4 +12,6 @@ public interface PointScaleRepository extends CrudRepository<PointScaleEntity, L
 
     List<PointScaleEntity> findAllByApiKey(String apiKey);
 
+    PointScaleEntity findByApiKeyAndName(String apiKey, String Name);
+
 }

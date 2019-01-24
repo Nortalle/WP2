@@ -53,9 +53,17 @@ public class RulesApiController implements RulesApi {
     @Override
     public  ResponseEntity<Void> deleteRule(@ApiParam(value = "",required=true ) @PathVariable("ruleId") Long ruleId,
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization) {
+        RuleEntity ruleEntity = rulesRepository.findOne(ruleId);
+
+        if(ruleEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!ruleEntity.getApiKey().equals(authorization)){
+            return ResponseEntity.status(401).build();
+        }
+
         rulesRepository.delete(ruleId);
 
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().build();//200
     }
 
     @Override
@@ -63,9 +71,15 @@ public class RulesApiController implements RulesApi {
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization) {
        RuleEntity ruleEntity = rulesRepository.findOne(ruleId);
 
+        if(ruleEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!ruleEntity.getApiKey().equals(authorization)){
+            return ResponseEntity.status(401).build();
+        }
+
        RuleRead ruleRead = converterService.toRuleRead(ruleEntity);
 
-       return ResponseEntity.ok(ruleRead);
+       return ResponseEntity.ok(ruleRead);//200
     }
 
     @Override
@@ -75,7 +89,7 @@ public class RulesApiController implements RulesApi {
         for(RuleEntity ruleEntity : rulesRepository.findAllByApiKey(authorization)){
             ruleReads.add(converterService.toRuleRead(ruleEntity));
         }
-        return ResponseEntity.ok(ruleReads);
+        return ResponseEntity.ok(ruleReads); //200
     }
 
     @Override
@@ -86,7 +100,7 @@ public class RulesApiController implements RulesApi {
         RuleEntity ruleEntity = converterService.toRuleEntity(body, authorization, ruleId);
         rulesRepository.save(ruleEntity);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(204).build();
     }
 
 }
