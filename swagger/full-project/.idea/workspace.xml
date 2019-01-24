@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc9bf3c1-9d6e-484b-992a-a6886feabb34" name="Default" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/EventEntity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/repositories/UsersRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -12,6 +13,16 @@
       <change beforePath="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/UserEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/repositories/RulesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/repositories/RulesRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../spring-server/src/main/resources/api-spec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/resources/api-spec.yaml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDBadgeSteps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDPointScaleSteps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDBadge.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDPointScale.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/helpers/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/helpers/Environment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CreationSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CreationSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/creation.feature" beforeDir="false" afterPath="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/creation.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
     </list>
     <ignored path="full-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,12 +38,69 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DockManager">
+    <window id="3">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDPointScaleSteps.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="722">
+                    <caret line="59" column="54" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1116481216">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="feature" value="9" />
+          <entry key="java" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Cucumber" value="9" />
+          <entry key="JAVA" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="feature" value="589" />
+          <entry key="java" value="976" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Cucumber" value="589" />
+          <entry key="JAVA" value="976" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="full-project" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/endpoints/BadgesApiController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="457">
@@ -133,6 +201,84 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+=======
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/main/resources/api-spec.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="482" column="4" selection-start-line="482" selection-start-column="4" selection-end-line="482" selection-end-column="4" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/helpers/Environment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#909#910#0" expanded="true" />
+                <element signature="e#945#946#0" expanded="true" />
+                <element signature="e#1109#1110#0" expanded="true" />
+                <element signature="e#1139#1140#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDPointScale.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CreationSteps.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDBadge.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/creation.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDPointScaleSteps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDBadgeSteps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="617">
+              <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="63" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -142,8 +288,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -187,12 +333,17 @@
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/endpoints/PointScalesApiController.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/Swagger2SpringBoot.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/configuration/SwaggerDocumentationConfig.java" />
-        <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/creation.feature" />
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/environment.properties" />
         <option value="$PROJECT_DIR$/../fruits-specs/pom.xml" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/UserEntity.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/resources/api-spec.yaml" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
         <option value="$PROJECT_DIR$/../fruits-specs/src/main/resources/api-spec.yaml" />
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/helpers/Environment.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/endpoints/RulesApiController.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/../spring-server/src/main/resources/api-spec.yaml" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/EventEntity.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/repositories/RulesRepository.java" />
@@ -203,8 +354,24 @@
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/UserEntity.java" />
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/SpecificationTest.java" />
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CreationSteps.java" />
+=======
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDBage.feature" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/helpers/Environment.java" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/creation.feature" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CreationSteps.java" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDBadgeSteps.java" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDBadge.feature" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDPointScale.feature" />
+        <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDPointScaleSteps.java" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -234,9 +401,15 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="793" />
     <option name="width" value="814" />
     <option name="height" value="867" />
+=======
+    <option name="x" value="-7" />
+    <option name="width" value="996" />
+    <option name="height" value="1047" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -244,6 +417,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,6 +468,30 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spec" type="462c0819:PsiDirectoryNode" />
               <item name="steps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fruits-specs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="spec" type="462c0819:PsiDirectoryNode" />
+              <item name="steps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fruits-specs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fruits-specs" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="scenarios" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
@@ -441,8 +639,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -454,7 +652,11 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548349786111" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548344581030" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../test/GamificationAPI/swagger/full-project" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -721,7 +923,7 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="Applet">
+    <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -764,7 +966,6 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -778,7 +979,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <properties />
       <listeners />
@@ -786,16 +987,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
+      <predefined_log_file id="idea.log" enabled="true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
@@ -805,9 +1006,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.Execute with Spring Boot" />
       <item itemvalue="Cucumber java.All Features in: fruits-specs" />
       <item itemvalue="Cucumber java.Feature: creation" />
-      <item itemvalue="Spring Boot.Execute with Spring Boot" />
     </list>
     <recent_temporary>
       <list>
@@ -847,11 +1048,17 @@
       <workItem from="1548158321778" duration="598000" />
       <workItem from="1548162109254" duration="261000" />
       <workItem from="1548171665200" duration="2393000" />
+<<<<<<< HEAD
       <workItem from="1548332205649" duration="14083000" />
+=======
+      <workItem from="1548332205649" duration="857000" />
+      <workItem from="1548334450023" duration="10094000" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="65994000" />
   </component>
   <component name="ToolWindowManager">
@@ -859,17 +1066,33 @@
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.057029177" />
+=======
+    <option name="totallyTimeSpent" value="62862000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="0" width="965" height="1047" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49753696" weight="0.05140187" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
       <window_info id="Structure" order="1" weight="0.24979724" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Capture Tool" order="6" />
+<<<<<<< HEAD
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32974428" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.21938089" />
+=======
+      <window_info id="Web" order="7" sideWeight="0.50246304" side_tool="true" weight="0.28217426" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.04819277" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39954075" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -892,22 +1115,22 @@
       <window_info anchor="right" id="Remote Host" order="6" />
       <window_info anchor="right" id="Bean Validation" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.072210066" />
+      <window_info anchor="right" id="Maven Projects" order="9" visible="true" weight="0.14254144" />
       <window_info anchor="right" id="Capture Analysis" order="10" />
       <window_info anchor="right" id="Theme Preview" order="11" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.019280206" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49753696" visible="true" weight="0.05140187" />
       <window_info id="Structure" order="1" weight="0.24979724" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Capture Tool" order="6" />
-      <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.50246304" side_tool="true" weight="0.28217426" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2974428" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1467689" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39954075" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -922,7 +1145,7 @@
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info active="true" anchor="right" id="Maven" order="1" visible="true" weight="0.14987406" />
+      <window_info anchor="right" id="Maven" order="1" visible="true" weight="0.14967638" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" id="Palette" order="4" />
@@ -930,7 +1153,7 @@
       <window_info anchor="right" id="Remote Host" order="6" />
       <window_info anchor="right" id="Bean Validation" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.072210066" />
+      <window_info anchor="right" id="Maven Projects" order="9" visible="true" weight="0.15070094" />
       <window_info anchor="right" id="Capture Analysis" order="10" />
       <window_info anchor="right" id="Theme Preview" order="11" />
     </layout-to-restore>
@@ -938,11 +1161,25 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/target/generated-sources/swagger/src/test/java/io/avalia/fruits/api/BadgesApiTest.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/exceptions/ApiException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/exceptions/NotFoundException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1083,6 +1320,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1091,12 +1329,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/PointScaleRead.java">
+=======
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/target/generated-sources/swagger/io/AMT/gamification/api/dto/BadgeWrite.java" />
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/target/generated-sources/swagger/io/AMT/gamification/api/BadgesApi.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/BadgeEntity.java">
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/PointScaleWrite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1105,6 +1349,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/RuleWrite.java">
+=======
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/endpoints/PointScalesApiController.java">
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
@@ -1128,6 +1375,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/Event.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1153,6 +1401,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/repositories/RulesRepository.java">
+=======
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/AwardPoint.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/BadgeRead.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/Event.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/RuleReadIf.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/RuleReadThen.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/RulesApi.java" />
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/entities/UserEntity.java">
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="66" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="66" />
@@ -1214,6 +1471,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/BadgesApi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1228,6 +1486,9 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/io/AMT/gamification/api/model/RuleRead.java" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/io/AMT/gamification/api/endpoints/BadgesApiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -1282,6 +1543,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/SpecificationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1293,6 +1555,76 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="335">
           <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/badge.feature">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/pointScale.feature">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/helpers/Environment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#909#910#0" expanded="true" />
+            <element signature="e#945#946#0" expanded="true" />
+            <element signature="e#1109#1110#0" expanded="true" />
+            <element signature="e#1139#1140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/main/resources/api-spec.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="482" column="4" selection-start-line="482" selection-start-column="4" selection-end-line="482" selection-end-column="4" />
+>>>>>>> bbb8b4cd5558b13967c8af5ab8fdbec11fb12e1f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/creation.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDBadge.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CreationSteps.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/resources/scenarios/CRUDPointScale.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDBadgeSteps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="63" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fruits-specs/src/test/java/io/AMT/gamification/api/spec/steps/CRUDPointScaleSteps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="59" column="54" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
