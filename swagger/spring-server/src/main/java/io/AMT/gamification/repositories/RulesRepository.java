@@ -9,5 +9,5 @@ public interface RulesRepository extends CrudRepository<RuleEntity, Long> {
 
     List<RuleEntity> findAllByApiKey(String apiKey);
 
-
+    List<RuleEntity> findOneByApiKeyAndType(String apiKey, String type);
 }

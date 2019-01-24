@@ -8,6 +8,7 @@ import io.AMT.gamification.repositories.RulesRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,12 +18,12 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+@Controller
 public class RulesApiController implements RulesApi {
     
     @Autowired
     RulesRepository rulesRepository;
-    
-    
+
     @Override
     public ResponseEntity<String> createRule(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                              @ApiParam(value = "rule to create"  ) @RequestBody RuleWrite body) {
@@ -31,15 +32,12 @@ public class RulesApiController implements RulesApi {
 
         rulesRepository.save(ruleEntity);
 
-
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
                 .buildAndExpand(ruleEntity.getId()).toUri();
 
         return ResponseEntity.created(location).build();
     }
-
-
 
     @Override
     public  ResponseEntity<Void> deleteRule(@ApiParam(value = "",required=true ) @PathVariable("ruleId") Long ruleId,
@@ -78,7 +76,6 @@ public class RulesApiController implements RulesApi {
         rulesRepository.save(ruleEntity);
 
         return ResponseEntity.ok().build();
-
     }
 
     private RuleEntity toRuleEntity(RuleWrite ruleWrite, String apiKey, Long ruleId){

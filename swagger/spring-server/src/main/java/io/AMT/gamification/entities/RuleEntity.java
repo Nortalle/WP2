@@ -1,9 +1,6 @@
 package io.AMT.gamification.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -21,7 +18,8 @@ public class RuleEntity implements Serializable {
 
     private String ifPropertyCondition;
 
-    private Long thenBadgeId;
+    @ManyToOne
+    private BadgeEntity badge;
 
     private Long thenPointScaleId;
 
@@ -59,14 +57,6 @@ public class RuleEntity implements Serializable {
         this.ifPropertyCondition = ifPropertyCondition;
     }
 
-    public Long getThenBadgeId() {
-        return thenBadgeId;
-    }
-
-    public void setThenBadgeId(Long thenBadgeId) {
-        this.thenBadgeId = thenBadgeId;
-    }
-
     public Long getThenPointScaleId() {
         return thenPointScaleId;
     }
@@ -89,5 +79,13 @@ public class RuleEntity implements Serializable {
 
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
+    }
+
+    public BadgeEntity getBadge() {
+        return badge;
+    }
+
+    public void setBadge(BadgeEntity badge) {
+        this.badge = badge;
     }
 }
