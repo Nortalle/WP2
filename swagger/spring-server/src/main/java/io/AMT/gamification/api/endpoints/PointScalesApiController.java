@@ -3,6 +3,7 @@ package io.AMT.gamification.api.endpoints;
 import io.AMT.gamification.api.PointScalesApi;
 import io.AMT.gamification.api.model.PointScaleRead;
 import io.AMT.gamification.api.model.PointScaleWrite;
+import io.AMT.gamification.api.services.ConverterService;
 import io.AMT.gamification.entities.PointScaleEntity;
 import io.AMT.gamification.repositories.PointScaleRepository;
 import io.swagger.annotations.ApiParam;
@@ -26,11 +27,14 @@ public class PointScalesApiController implements PointScalesApi {
     @Autowired
     PointScaleRepository pointScaleRepository;
 
+    @Autowired
+    ConverterService converterService;
+
     @Override
     public ResponseEntity<String> createPointScale(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                    @ApiParam(value = "pointScale to create"  ) @RequestBody PointScaleWrite body){
 
-        PointScaleEntity pointScaleEntity = toPointScaleEntity(body, authorization);
+        PointScaleEntity pointScaleEntity = converterService.toPointScaleEntity(body, authorization);
 
         pointScaleRepository.save(pointScaleEntity);
 
@@ -55,7 +59,7 @@ public class PointScalesApiController implements PointScalesApi {
                                                         @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization){
         PointScaleEntity badgeEntity = pointScaleRepository.findOne(pointScaleId);
 
-        PointScaleRead pointScaleRead = toPointScaleRead(badgeEntity);
+        PointScaleRead pointScaleRead = converterService.toPointScaleRead(badgeEntity);
 
         return ResponseEntity.ok(pointScaleRead);
     }
@@ -65,7 +69,7 @@ public class PointScalesApiController implements PointScalesApi {
         List<PointScaleRead> pointScaleReads = new ArrayList<>();
 
         for(PointScaleEntity pointScaleEntity : pointScaleRepository.findAllByApiKey(authorization)){
-            pointScaleReads.add(toPointScaleRead(pointScaleEntity));
+            pointScaleReads.add(converterService.toPointScaleRead(pointScaleEntity));
         }
         return ResponseEntity.ok(pointScaleReads);
     }
@@ -75,34 +79,10 @@ public class PointScalesApiController implements PointScalesApi {
                                                  @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                  @ApiParam(value = "point scale that needs to be update in the store"  ) @RequestBody PointScaleWrite body){
 
-        PointScaleEntity pointScaleEntity = toPointScaleEntity(body, authorization, pointScaleId);
+        PointScaleEntity pointScaleEntity = converterService.toPointScaleEntity(body, authorization, pointScaleId);
 
         pointScaleRepository.save(pointScaleEntity);
 
         return ResponseEntity.ok().build();
-    }
-
-    private PointScaleEntity toPointScaleEntity(PointScaleWrite badge, String apiKey, Long pointScaleId){
-        PointScaleEntity pointScaleEntity = toPointScaleEntity(badge, apiKey);
-        pointScaleEntity.setId(pointScaleId);
-        return pointScaleEntity;
-    }
-
-    private PointScaleEntity toPointScaleEntity(PointScaleWrite pointScaleWrite, String apiKey){
-        PointScaleEntity pointScaleEntity = new PointScaleEntity();
-        pointScaleEntity.setName(pointScaleWrite.getName());
-        pointScaleEntity.setDescription(pointScaleWrite.getDescription());
-        pointScaleEntity.setApiKey(apiKey);
-
-        return pointScaleEntity;
-    }
-
-    private PointScaleRead toPointScaleRead(PointScaleEntity pointScaleEntity){
-        PointScaleRead pointScaleRead = new PointScaleRead();
-        pointScaleRead.setName(pointScaleEntity.getName());
-        pointScaleRead.setDescription(pointScaleEntity.getDescription());
-        pointScaleRead.setId(pointScaleEntity.getId());
-
-        return pointScaleRead;
     }
 }

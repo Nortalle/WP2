@@ -3,6 +3,7 @@ package io.AMT.gamification.api.endpoints;
 import io.AMT.gamification.api.RulesApi;
 import io.AMT.gamification.api.model.RuleRead;
 import io.AMT.gamification.api.model.RuleWrite;
+import io.AMT.gamification.api.services.ConverterService;
 import io.AMT.gamification.entities.RuleEntity;
 import io.AMT.gamification.repositories.BadgesRepository;
 import io.AMT.gamification.repositories.RulesRepository;
@@ -31,11 +32,14 @@ public class RulesApiController implements RulesApi {
     @Autowired
     BadgesRepository badgesRepository;
 
+    @Autowired
+    ConverterService converterService;
+
     @Override
     public ResponseEntity<String> createRule(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                              @ApiParam(value = "rule to create"  ) @RequestBody RuleWrite body) {
 
-        RuleEntity ruleEntity = toRuleEntity(body, authorization);
+        RuleEntity ruleEntity = converterService.toRuleEntity(body, authorization);
 
         rulesRepository.save(ruleEntity);
 
@@ -59,7 +63,7 @@ public class RulesApiController implements RulesApi {
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization) {
        RuleEntity ruleEntity = rulesRepository.findOne(ruleId);
 
-       RuleRead ruleRead = toRuleRead(ruleEntity);
+       RuleRead ruleRead = converterService.toRuleRead(ruleEntity);
 
        return ResponseEntity.ok(ruleRead);
     }
@@ -69,7 +73,7 @@ public class RulesApiController implements RulesApi {
         List<RuleRead> ruleReads = new ArrayList<>();
 
         for(RuleEntity ruleEntity : rulesRepository.findAllByApiKey(authorization)){
-            ruleReads.add(toRuleRead(ruleEntity));
+            ruleReads.add(converterService.toRuleRead(ruleEntity));
         }
         return ResponseEntity.ok(ruleReads);
     }
@@ -79,42 +83,10 @@ public class RulesApiController implements RulesApi {
                                            @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                            @ApiParam(value = "rule that needs to be update in the store"  ) @RequestBody RuleWrite body) {
 
-        RuleEntity ruleEntity = toRuleEntity(body, authorization, ruleId);
+        RuleEntity ruleEntity = converterService.toRuleEntity(body, authorization, ruleId);
         rulesRepository.save(ruleEntity);
 
         return ResponseEntity.ok().build();
     }
 
-    private RuleEntity toRuleEntity(RuleWrite ruleWrite, String apiKey, Long ruleId){
-        RuleEntity ruleEntity = toRuleEntity(ruleWrite, apiKey);
-        ruleEntity.setId(ruleId);
-
-        return ruleEntity;
-    }
-
-    private RuleEntity toRuleEntity(RuleWrite ruleWrite, String authorization) {
-        RuleEntity ruleEntity = new RuleEntity();
-        ruleEntity.setApiKey(authorization);
-        ruleEntity.setIfEventType(ruleWrite.getIfEventType());
-        ruleEntity.setIfPropertyName(ruleWrite.getIfPropertyName());
-        ruleEntity.setIfPropertyCondition(ruleWrite.getIfPropertyCondition());
-        ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
-        ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
-        ruleEntity.setThenPointScaleId(ruleWrite.getThenPointScaleId());
-
-        return ruleEntity;
-    }
-
-    private RuleRead toRuleRead(RuleEntity ruleEntity){
-        RuleRead ruleRead = new RuleRead();
-        ruleRead.setId(ruleEntity.getId());
-        ruleRead.setIfEventType(ruleEntity.getIfEventType());
-        ruleRead.setIfPropertyName(ruleEntity.getIfPropertyName());
-        ruleRead.setIfPropertyCondition(ruleEntity.getIfPropertyCondition());
-        ruleRead.setThenBadgeId(ruleEntity.getBadge().getId());
-        ruleRead.setThenPointScaleId(ruleEntity.getThenPointScaleId());
-        ruleRead.setThenAwardPoint(ruleEntity.getThenAwardPoint());
-
-        return ruleRead;
-    }
 }
