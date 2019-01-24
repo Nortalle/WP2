@@ -21,7 +21,8 @@ public class RuleEntity implements Serializable {
     @ManyToOne
     private BadgeEntity badge;
 
-    private Long thenPointScaleId;
+    @ManyToOne
+    private PointScaleEntity pointScale;
 
     private int thenAwardPoint;
 
@@ -57,13 +58,6 @@ public class RuleEntity implements Serializable {
         this.ifPropertyCondition = ifPropertyCondition;
     }
 
-    public Long getThenPointScaleId() {
-        return thenPointScaleId;
-    }
-
-    public void setThenPointScaleId(Long thenPointScaleId) {
-        this.thenPointScaleId = thenPointScaleId;
-    }
 
     public int getThenAwardPoint() {
         return thenAwardPoint;
@@ -87,5 +81,13 @@ public class RuleEntity implements Serializable {
 
     public void setBadge(BadgeEntity badge) {
         this.badge = badge;
+    }
+
+    public PointScaleEntity getPointScale() {
+        return pointScale;
+    }
+
+    public void setPointScale(PointScaleEntity pointScale) {
+        this.pointScale = pointScale;
     }
 }

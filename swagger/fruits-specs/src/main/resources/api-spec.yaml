@@ -506,7 +506,6 @@ definitions:
     required:
       - id
       - ifEventType
-      - then
     properties:
       id:
         type: integer
@@ -530,8 +529,6 @@ definitions:
     required:
       - userId
       - type
-      - propertyName
-      - propertyDefinition
     properties:
       userId:
         type: integer

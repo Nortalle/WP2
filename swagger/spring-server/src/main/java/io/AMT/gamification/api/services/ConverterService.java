@@ -4,6 +4,7 @@ import io.AMT.gamification.api.endpoints.BadgesApiController;
 import io.AMT.gamification.api.model.*;
 import io.AMT.gamification.entities.*;
 import io.AMT.gamification.repositories.BadgesRepository;
+import io.AMT.gamification.repositories.PointScaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ public class ConverterService {
 
     @Autowired
     BadgesRepository badgesRepository;
+
+    @Autowired
+    PointScaleRepository pointScaleRepository;
 
 
     public BadgeEntity toBadgeEntity(BadgeWrite badge, String apiKey, Long badgeId){
@@ -102,7 +106,7 @@ public class ConverterService {
         ruleEntity.setIfPropertyCondition(ruleWrite.getIfPropertyCondition());
         ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
         ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
-        ruleEntity.setThenPointScaleId(ruleWrite.getThenPointScaleId());
+        ruleEntity.setPointScale(pointScaleRepository.findOne(ruleWrite.getThenPointScaleId()));
 
         return ruleEntity;
     }
@@ -114,9 +118,19 @@ public class ConverterService {
         ruleRead.setIfPropertyName(ruleEntity.getIfPropertyName());
         ruleRead.setIfPropertyCondition(ruleEntity.getIfPropertyCondition());
         ruleRead.setThenBadgeId(ruleEntity.getBadge().getId());
-        ruleRead.setThenPointScaleId(ruleEntity.getThenPointScaleId());
+        ruleRead.setThenPointScaleId(ruleEntity.getPointScale().getId());
         ruleRead.setThenAwardPoint(ruleEntity.getThenAwardPoint());
 
         return ruleRead;
     }
+
+    public PointScaleAwardEntity toPointScaleAwardEntity(PointScaleEntity pointScaleToWin, UserEntity userEntity, int amount) {
+
+        PointScaleAwardEntity pointScaleAwardEntity = new PointScaleAwardEntity();
+        pointScaleAwardEntity.setPointScaleEntity(pointScaleToWin);
+        pointScaleAwardEntity.setUserEntity(userEntity);
+        pointScaleAwardEntity.setAmount(amount);
+
+            return pointScaleAwardEntity;
+        }
 }

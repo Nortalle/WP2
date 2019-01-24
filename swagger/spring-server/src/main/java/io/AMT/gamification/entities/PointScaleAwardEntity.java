@@ -15,7 +15,7 @@ public class PointScaleAwardEntity {
     @ManyToOne
     private UserEntity userEntity;
 
-    private int amount;
+    private int amount = 0;
 
     public long getId() {
         return id;
@@ -46,6 +46,6 @@ public class PointScaleAwardEntity {
     }
 
     public void setAmount(int amount) {
-        this.amount = amount;
+        this.amount += amount;
     }
 }
