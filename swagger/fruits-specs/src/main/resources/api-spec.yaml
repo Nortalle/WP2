@@ -16,6 +16,12 @@ tags:
     description: "Everything about the badges"
   - name: "pointScales"
     description: "Everything about the pointScales"
+  - name: "rules"
+    description: "Everything about the rules"
+  - name: "users"
+    description: "Everything about the users"
+  - name: "events"
+    description: "Everything about the event"
 schemes:
   - "http"
 parameters:
@@ -27,6 +33,12 @@ parameters:
   badgeId:
     in: path
     name: badgeId
+    type: integer
+    format: int64
+    required: true
+  userId:
+    in: path
+    name: userId
     type: integer
     format: int64
     required: true
@@ -374,6 +386,28 @@ paths:
       responses:
         200:
           description: "successful operation"
+  /users/{userId}/badges:
+    parameters:
+      - $ref: '#/parameters/userId'
+    get:
+      tags:
+        - "users"
+      summary: "Get a badges from a specific user"
+      description: "Get a badges from a specific user"
+      operationId: "getBadgesFromUser"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/badgeRead"
+        400:
+          description: "something very very bad happened"
 
 definitions:
   pointScaleWrite:
@@ -478,16 +512,15 @@ definitions:
     required:
       - userId
       - type
+      - propertyName
+      - propertyDefinition
     properties:
       userId:
         type: integer
         format: int64
       type:
         type: string
-      properties:
-        type: object #could be an array in an other version
-        properties:
-          name:
-            type: string
-          level:
-            type: integer
+      propertyName:
+        type: string
+      propertyDefinition:
+        type: string

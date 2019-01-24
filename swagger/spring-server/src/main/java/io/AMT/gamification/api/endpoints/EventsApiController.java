@@ -2,6 +2,7 @@ package io.AMT.gamification.api.endpoints;
 
 import io.AMT.gamification.api.EventsApi;
 import io.AMT.gamification.api.model.Event;
+import io.AMT.gamification.api.services.ConverterService;
 import io.AMT.gamification.entities.BadgeAwardEntity;
 import io.AMT.gamification.entities.BadgeEntity;
 import io.AMT.gamification.entities.RuleEntity;
@@ -30,13 +31,17 @@ public class EventsApiController implements EventsApi {
     @Autowired
     BadgeAwardRepository badgeAwardRepository;
 
+
+    @Autowired
+    ConverterService converterService;
+
     @Override
     public ResponseEntity<Void> createEvent(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                      @ApiParam(value = "event to create"  ) @RequestBody Event body){
 
         UserEntity userEntity = usersRepository.findOne(body.getUserId());
         if(userEntity == null){
-            userEntity = toUserEntity(body.getUserId(), authorization);
+            userEntity = converterService.toUserEntity(body.getUserId(), authorization);
             usersRepository.save(userEntity);
         }
 
@@ -46,7 +51,7 @@ public class EventsApiController implements EventsApi {
         if(!ruleEntityList.isEmpty()){
             BadgeEntity badgeToWin = ruleEntityList.get(0).getBadge();
             if(badgeToWin != null){
-                BadgeAwardEntity badgeAwardEntity = toBadgeAwardEntity(badgeToWin, userEntity);
+                BadgeAwardEntity badgeAwardEntity = converterService.toBadgeAwardEntity(badgeToWin, userEntity);
                 badgeAwardRepository.save(badgeAwardEntity);
             }
         }
@@ -54,19 +59,4 @@ public class EventsApiController implements EventsApi {
         return ResponseEntity.ok().build();
     }
 
-    private UserEntity toUserEntity(Long userId, String apiKey){
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(userId);
-        userEntity.setApiKey(apiKey);
-
-        return userEntity;
-    }
-
-    private BadgeAwardEntity toBadgeAwardEntity(BadgeEntity badgeEntity, UserEntity userEntity){
-        BadgeAwardEntity badgeAwardEntity = new BadgeAwardEntity();
-        badgeAwardEntity.setBadgeEntity(badgeEntity);
-        badgeAwardEntity.setUserEntity(userEntity);
-
-        return badgeAwardEntity;
-    }
 }
