@@ -4,7 +4,7 @@ import io.AMT.gamification.entities.PointScaleAwardEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
-import java.util.List;
+        import java.util.List;
 
 public interface PointScaleAwardRepository extends CrudRepository<PointScaleAwardEntity, Long> {
 
