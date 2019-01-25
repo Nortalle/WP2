@@ -3,12 +3,16 @@ package io.AMT.gamification.api.spec.steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.AMT.gamification.api.EventsApi;
+import io.AMT.gamification.api.RulesApi;
 import io.AMT.gamification.api.spec.helpers.Environment;
 import io.AMT.gamification.ApiException;
 import io.AMT.gamification.ApiResponse;
 import io.AMT.gamification.api.PointScalesApi;
 import io.AMT.gamification.api.dto.PointScaleWrite;
 import io.AMT.gamification.api.dto.PointScaleRead;
+import io.AMT.gamification.api.dto.RuleWrite;
+import io.AMT.gamification.api.dto.Event;
 import org.junit.Assert;
 
 import java.util.ArrayList;
@@ -27,7 +31,6 @@ public class CRUDPointScaleSteps {
     private PointScaleRead pointScaleRead;
     List<PointScaleRead> pointScaleReads = new ArrayList<>();
 
-
     private ApiResponse lastApiResponse;
     private ApiException lastApiException;
     private boolean lastApiCallThrewException;
@@ -37,9 +40,28 @@ public class CRUDPointScaleSteps {
     private String token1 = "token1";
     private String wrongToken = "token2";
 
+    //---------------------------------------------------------------
+    //---------------------STORY-ATTRIBUTES-------------------------------------
+    //---------------------------------------------------------------
+
+    private RulesApi rulesApi;
+    private EventsApi eventsApi;
+    private long userId = 1234;
+    private String DRINK = "DRINK";
+
+    private RuleWrite ruleWrite;
+    private Event event;
+
+
+    //---------------------------------------------------------------
+    //---------------------STORY-ATTRIBUTES-------------------------------------
+    //---------------------------------------------------------------
+
     public CRUDPointScaleSteps(Environment environment){
         this.environment = environment;
         this.pointScalesApi = environment.getPointScalesApi();
+        this.rulesApi = environment.getRuleApi();
+        this.eventsApi = environment.getEventsApi();
     }
 
     @Given("^there is a Gamification server using pointScales$")
@@ -53,6 +75,48 @@ public class CRUDPointScaleSteps {
         pointScaleWrite.setName("pointScale");
         pointScaleWrite.setDescription("pointScale");
         assertNotNull(pointScaleWrite);
+    }
+
+
+    //---------------------------------------------------------------
+    //---------------------STORY-method-------------------------------------
+    //---------------------------------------------------------------
+
+    @Given("^I have a rule payLoad with pointScale id$")
+    public void i_have_a_rule_payload() throws Throwable {
+        ruleWrite = new RuleWrite();
+        ruleWrite.setIfEventType(DRINK);
+        ruleWrite.setThenPointScaleId(pointScaleId);
+        assertNotNull(ruleWrite);
+    }
+
+    @Given("^I have an event payload$")
+    public void i_have_a_event_payload() throws Throwable {
+        event = new Event();
+        event.setType(DRINK);
+        event.setUserId(userId);
+        assertNotNull(event);
+    }
+
+    @When("^I POST it to the /rules endpoint$")
+    public void i_POST_it_to_the_rules_endpoint() throws Throwable {
+        try {
+            String token = "salut";
+            lastApiResponse = pointScalesApi.createPointScaleWithHttpInfo(token1, pointScaleWrite);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+
+            if(lastStatusCode != 204) {
+                //get the id of the badge created
+                getIdFromLocation(lastApiResponse.getHeaders().get("Location").toString());
+            }
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
     }
 
     @When("^I POST it to the /pointScales endpoint$")

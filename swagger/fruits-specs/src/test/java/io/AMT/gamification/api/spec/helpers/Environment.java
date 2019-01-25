@@ -3,6 +3,8 @@ package io.AMT.gamification.api.spec.helpers;
 import io.AMT.gamification.api.BadgesApi;
 import io.AMT.gamification.api.PointScalesApi;
 import io.AMT.gamification.api.RulesApi;
+import io.AMT.gamification.api.UsersApi;
+import io.AMT.gamification.api.EventsApi;
 
 
 import java.io.IOException;
@@ -15,8 +17,9 @@ public class Environment {
 
     private BadgesApi badgesApi = new BadgesApi();
     private PointScalesApi pointScalesApi = new PointScalesApi();
-
     private RulesApi rulesApi = new RulesApi();
+    private UsersApi usersApi = new UsersApi();
+    private EventsApi eventsApi = new EventsApi();
 
     public Environment() throws IOException {
         Properties properties = new Properties();
@@ -25,7 +28,8 @@ public class Environment {
         badgesApi.getApiClient().setBasePath(url);
         pointScalesApi.getApiClient().setBasePath(url);
         rulesApi.getApiClient().setBasePath(url);
-
+        usersApi.getApiClient().setBasePath(url);
+        eventsApi.getApiClient().setBasePath(url);
 
     }
 
@@ -41,4 +45,19 @@ public class Environment {
         return rulesApi;
     }
 
+    public UsersApi getUsersApi() {
+        return usersApi;
+    }
+
+    public void setUsersApi(UsersApi usersApi) {
+        this.usersApi = usersApi;
+    }
+
+    public EventsApi getEventsApi() {
+        return eventsApi;
+    }
+
+    public void setEventsApi(EventsApi eventsApi) {
+        this.eventsApi = eventsApi;
+    }
 }
