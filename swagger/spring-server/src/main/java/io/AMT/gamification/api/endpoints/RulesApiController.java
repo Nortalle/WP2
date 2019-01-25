@@ -61,6 +61,7 @@ public class RulesApiController implements RulesApi {
             return ResponseEntity.status(401).build();
         }
 
+
         rulesRepository.delete(ruleId);
 
         return ResponseEntity.accepted().build();//200

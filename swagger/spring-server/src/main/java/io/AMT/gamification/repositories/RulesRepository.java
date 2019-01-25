@@ -14,4 +14,7 @@ public interface RulesRepository extends CrudRepository<RuleEntity, Long> {
 
     @Transactional
     void deleteRuleEntitiesByBadge_Id(Long id);
+
+    @Transactional
+    void deleteRuleEntitiesByPointScale_Id(Long id);
 }
