@@ -104,10 +104,14 @@ public class ConverterService {
         ruleEntity.setIfEventType(ruleWrite.getIfEventType());
         ruleEntity.setIfPropertyName(ruleWrite.getIfPropertyName());
         ruleEntity.setIfPropertyCondition(ruleWrite.getIfPropertyCondition());
-        ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
-        ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
-        ruleEntity.setPointScale(pointScaleRepository.findOne(ruleWrite.getThenPointScaleId()));
+        if(ruleWrite.getThenBadgeId() != null){
+            ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
 
+        }
+        ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
+        if(ruleWrite.getThenPointScaleId() != null) {
+            ruleEntity.setPointScale(pointScaleRepository.findOne(ruleWrite.getThenPointScaleId()));
+        }
         return ruleEntity;
     }
 

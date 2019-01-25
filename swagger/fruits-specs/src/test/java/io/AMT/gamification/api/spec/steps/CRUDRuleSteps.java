@@ -54,8 +54,6 @@ public class CRUDRuleSteps {
         ruleWrite.setIfPropertyCondition("Rule");
         ruleWrite.setIfPropertyName("Rule");
         ruleWrite.setThenAwardPoint(1);
-        ruleWrite.setThenBadgeId(1L);
-        ruleWrite.setThenPointScaleId(1L);
         assertNotNull(ruleWrite);
     }
 
@@ -109,8 +107,6 @@ public class CRUDRuleSteps {
         expected.setIfPropertyCondition("Rule");
         expected.setIfPropertyName("Rule");
         expected.setThenAwardPoint(1);
-        expected.setThenBadgeId(1L);
-        expected.setThenPointScaleId(1L);
         expected.setId(ruleId);
         assertEquals(expected, ruleRead);
     }
@@ -172,8 +168,6 @@ public class CRUDRuleSteps {
         newRule.setIfPropertyCondition("Rule1");
         newRule.setIfPropertyName("Rule1");
         newRule.setThenAwardPoint(11);
-        newRule.setThenBadgeId(11L);
-        newRule.setThenPointScaleId(11L);
     }
 
     @When("^I PUT it to the /rules/ruleId endpoint$")
@@ -203,8 +197,6 @@ public class CRUDRuleSteps {
         expected.setIfPropertyCondition("Rule1");
         expected.setIfPropertyName("Rule1");
         expected.setThenAwardPoint(11);
-        expected.setThenBadgeId(11L);
-        expected.setThenPointScaleId(11L);
         expected.setId(ruleId);
         assertEquals(expected, ruleRead);
     }
