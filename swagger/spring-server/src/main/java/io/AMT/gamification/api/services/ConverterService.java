@@ -117,8 +117,12 @@ public class ConverterService {
         ruleRead.setIfEventType(ruleEntity.getIfEventType());
         ruleRead.setIfPropertyName(ruleEntity.getIfPropertyName());
         ruleRead.setIfPropertyCondition(ruleEntity.getIfPropertyCondition());
-        ruleRead.setThenBadgeId(ruleEntity.getBadge().getId());
-        ruleRead.setThenPointScaleId(ruleEntity.getPointScale().getId());
+        if(ruleEntity.getBadge() != null) {
+            ruleRead.setThenBadgeId(ruleEntity.getBadge().getId());
+        }
+        if(ruleEntity.getPointScale() != null) {
+            ruleRead.setThenPointScaleId(ruleEntity.getPointScale().getId());
+        }
         ruleRead.setThenAwardPoint(ruleEntity.getThenAwardPoint());
 
         return ruleRead;
