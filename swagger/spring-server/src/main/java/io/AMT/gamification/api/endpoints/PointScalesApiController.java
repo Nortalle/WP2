@@ -4,6 +4,7 @@ import io.AMT.gamification.api.PointScalesApi;
 import io.AMT.gamification.api.model.PointScaleRead;
 import io.AMT.gamification.api.model.PointScaleWrite;
 import io.AMT.gamification.api.services.ConverterService;
+import io.AMT.gamification.entities.BadgeEntity;
 import io.AMT.gamification.entities.PointScaleEntity;
 import io.AMT.gamification.repositories.BadgeAwardRepository;
 import io.AMT.gamification.repositories.PointScaleAwardRepository;
@@ -43,9 +44,9 @@ public class PointScalesApiController implements PointScalesApi {
     public ResponseEntity<String> createPointScale(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                    @ApiParam(value = "pointScale to create"  ) @RequestBody PointScaleWrite body){
 
-        //PointScaleEntity pointScaleEntity = pointScaleRepository.findByApiKeyAndName(authorization, body.getName());
+        PointScaleEntity pointScaleEntity = pointScaleRepository.findByApiKeyAndName(authorization, body.getName());
 
-        PointScaleEntity pointScaleEntity = null;
+        //PointScaleEntity pointScaleEntity = null;
 
         if(pointScaleEntity == null) {
              pointScaleEntity = converterService.toPointScaleEntity(body, authorization);
@@ -111,8 +112,15 @@ public class PointScalesApiController implements PointScalesApi {
     public ResponseEntity<Void> updatePointScale(@ApiParam(value = "",required=true ) @PathVariable("pointScaleId") Long pointScaleId,
                                                  @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                                  @ApiParam(value = "point scale that needs to be update in the store"  ) @RequestBody PointScaleWrite body){
+        PointScaleEntity pointScaleEntity = pointScaleRepository.findOne(pointScaleId);
 
-        PointScaleEntity pointScaleEntity = converterService.toPointScaleEntity(body, authorization, pointScaleId);
+        if(pointScaleEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!pointScaleEntity.getApiKey().equals(authorization)){
+            return ResponseEntity.status(401).build();
+        }
+
+        pointScaleEntity = converterService.toPointScaleEntity(body, authorization, pointScaleId);
 
         pointScaleRepository.save(pointScaleEntity);
 

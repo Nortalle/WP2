@@ -21,21 +21,84 @@ You can then access:
 
 You can use curl to invoke the endpoints:
 
-* To retrieve the list of badges previously created:
+* To retrieve the list of badges previously created :
 
 ```
-curl -X GET --header 'Accept: application/json' 'http://localhost:8080/api/'
+curl -X GET --header 'Accept: application/json' --header 'authorization: <apiKey>' 'http://localhost:8080/api/badges'
 ```
 
 * To create a new badge (beware that in the live documentation, there are extra \ line separators in the JSON payload that cause issues in some shells)
 
 ```
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d '{
-   "colour": "orange",
-   "kind": "orange", 
-   "size": "small", 
-   "weight": "medium" 
- }' 'http://localhost:8080/api/fruits'
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'authorization: <apiKey>' -d '{ \ 
+   "image": "string", \ 
+   "name": "string", \ 
+   "visible": false \ 
+ }' 'http://localhost:8080/api/badges'
+```
+
+- To delete a badges previously created :
+
+```
+curl -X DELETE --header 'Accept: application/json' --header 'authorization: >apiKey>' 'http://localhost:8080/api/badges/<badgeId>'
+```
+
+- To get a specified badge already created :
+
+```
+curl -X GET --header 'Accept: application/json' --header 'authorization: <apiKey>' 'http://localhost:8080/api/badges/<badgeId>'
+```
+
+- To modified a specified badge already created
+
+```
+curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'authorization: <apiKey>' -d '{ \ 
+   "image": "newValue", \ 
+   "name": "newValue", \ 
+   "visible": true \ 
+ }' 'http://localhost:8080/api/badges/<badgeId>'
+```
+
+Do the same for the pointScales and the rules, here what these endpoints send and receive
+
+Post, Put:
+
+```json
+rule :
+{
+  "ifEventType": "string",
+  "ifPropertyCondition": "string",
+  "ifPropertyName": "string",
+  "thenAwardPoint": 0,
+  "thenBadgeId": 0,
+  "thenPointScaleId": 0
+}
+pointScale : 
+{
+  "description": "string",
+  "name": "string"
+}
+```
+
+Get :
+
+```
+rule :
+{
+  "id": 0,
+  "ifEventType": "string",
+  "ifPropertyCondition": "string",
+  "ifPropertyName": "string",
+  "thenAwardPoint": 0,
+  "thenBadgeId": 0,
+  "thenPointScaleId": 0
+}
+pointScale : 
+{
+  "id": 0,
+  "description": "string",
+  "name": "string"
+}
 ```
 
 # Test the Gamification microservice by running the executable specification

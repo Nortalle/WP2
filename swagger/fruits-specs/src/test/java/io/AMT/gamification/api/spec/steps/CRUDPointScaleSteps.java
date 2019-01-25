@@ -64,8 +64,10 @@ public class CRUDPointScaleSteps {
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
 
-            //get the id of the badge created
-            getIdFromLocation(lastApiResponse.getHeaders().get("Location").toString());
+            if(lastStatusCode != 204) {
+                //get the id of the badge created
+                getIdFromLocation(lastApiResponse.getHeaders().get("Location").toString());
+            }
         } catch (ApiException e) {
             lastApiCallThrewException = true;
             lastApiResponse = null;
