@@ -41,7 +41,7 @@ public class Environment {
         return pointScalesApi;
     }
 
-    public RulesApi getRuleApi() {
+    public RulesApi getRulesApi() {
         return rulesApi;
     }
 
