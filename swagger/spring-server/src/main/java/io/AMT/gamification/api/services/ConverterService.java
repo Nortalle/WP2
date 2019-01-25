@@ -106,7 +106,6 @@ public class ConverterService {
         ruleEntity.setIfPropertyCondition(ruleWrite.getIfPropertyCondition());
         if(ruleWrite.getThenBadgeId() != null){
             ruleEntity.setBadge(badgesRepository.findOne(ruleWrite.getThenBadgeId()));
-
         }
         ruleEntity.setThenAwardPoint(ruleWrite.getThenAwardPoint());
         if(ruleWrite.getThenPointScaleId() != null) {

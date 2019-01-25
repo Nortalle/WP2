@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.AMT.gamification.api.EventsApi;
 import io.AMT.gamification.api.RulesApi;
+import io.AMT.gamification.api.UsersApi;
 import io.AMT.gamification.api.spec.helpers.Environment;
 import io.AMT.gamification.ApiException;
 import io.AMT.gamification.ApiResponse;
@@ -46,6 +47,7 @@ public class CRUDPointScaleSteps {
 
     private RulesApi rulesApi;
     private EventsApi eventsApi;
+    private UsersApi usersApi;
     private long userId = 1234;
     private String DRINK = "DRINK";
 
@@ -60,8 +62,9 @@ public class CRUDPointScaleSteps {
     public CRUDPointScaleSteps(Environment environment){
         this.environment = environment;
         this.pointScalesApi = environment.getPointScalesApi();
-        this.rulesApi = environment.getRuleApi();
+        this.rulesApi = environment.getRulesApi();
         this.eventsApi = environment.getEventsApi();
+        this.usersApi = environment.getUsersApi();
     }
 
     @Given("^there is a Gamification server using pointScales$")
@@ -87,6 +90,7 @@ public class CRUDPointScaleSteps {
         ruleWrite = new RuleWrite();
         ruleWrite.setIfEventType(DRINK);
         ruleWrite.setThenPointScaleId(pointScaleId);
+        ruleWrite.setThenAwardPoint(20000);
         assertNotNull(ruleWrite);
     }
 
@@ -98,11 +102,39 @@ public class CRUDPointScaleSteps {
         assertNotNull(event);
     }
 
-    @When("^I POST it to the /rules endpoint$")
-    public void i_POST_it_to_the_rules_endpoint() throws Throwable {
+    @When("^I GET it from the /users/id/pointscales endpoint$")
+    public void i_GET_it_to_the_users_pointscales_endpoint() throws Throwable {
+        List<PointScaleRead> pointScaleReads = usersApi.getPointScalesFromUser(userId, token1);
+        Assert.assertFalse(pointScaleReads.isEmpty());
+    }
+
+    @When("^I POST it to the /events endpoint$")
+    public void i_POST_it_to_the_events_endpoint() throws Throwable {
         try {
             String token = "salut";
-            lastApiResponse = pointScalesApi.createPointScaleWithHttpInfo(token1, pointScaleWrite);
+            lastApiResponse = eventsApi.createEventWithHttpInfo(token1, event);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+
+            if(lastStatusCode != 204) {
+                //get the id of the badge created
+                //getIdFromLocation(lastApiResponse.getHeaders().get("Location").toString());
+            }
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+
+
+    @When("^I POST it to the /rules endpoint story$")
+    public void i_POST_it_to_the_rules_endpoint_story() throws Throwable {
+        try {
+            lastApiResponse = rulesApi.createRuleWithHttpInfo(token1, ruleWrite);
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
