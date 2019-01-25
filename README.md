@@ -1,28 +1,33 @@
-# TrainingREST
+# Gamification WP 2
 
-# Build and run the Fruit microservice
+Adrien Allemand, Vincent Guidoux, Guillaume Hochet et Loyse Krug
 
-You can use maven to build and run the REST API implementation from the command line. After invoking the following maven goal, the Spring Boot server will be up and running, listening for connections on port 8080.
+# Build and run the WP2
+
+We already build a .jar for you, so to use our repo, you just have to 
 
 ```
-cd swagger/spring-server/
-mvn spring-boot:run
+git clone https://github.com/Nortalle/WP2.git
+cd WP2
+docker-compose up
 ```
 
 You can then access:
 
 * the [API documentation](http://localhost:8080/api/swagger-ui.html), generated from annotations in the code
 * the [API endpoint](http://localhost:8080/api/), accepting GET and POST requests
+* at the [UNIX Mac/Linux Docker for windows](http://localhost:8080/api/) or [Docker toolbox](http://192.168.99.100:8080/api/)
+* or in command line with `curl`
 
 You can use curl to invoke the endpoints:
 
-* To retrieve the list of fruits previously created:
+* To retrieve the list of badges previously created:
 
 ```
-curl -X GET --header 'Accept: application/json' 'http://localhost:8080/api/fruits'
+curl -X GET --header 'Accept: application/json' 'http://localhost:8080/api/'
 ```
 
-* To create a new fruit (beware that in the live documentation, there are extra \ line separators in the JSON payload that cause issues in some shells)
+* To create a new badge (beware that in the live documentation, there are extra \ line separators in the JSON payload that cause issues in some shells)
 
 ```
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d '{
@@ -31,9 +36,9 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d
    "size": "small", 
    "weight": "medium" 
  }' 'http://localhost:8080/api/fruits'
- ```
+```
 
-# Test the Fruit microservice by running the executable specification
+# Test the Gamification microservice by running the executable specification
 
 You can use the Cucumber project to validate the API implementation. Do this when the server is running.
 

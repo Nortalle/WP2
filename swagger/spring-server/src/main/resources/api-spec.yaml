@@ -392,8 +392,8 @@ paths:
     get:
       tags:
         - "users"
-      summary: "Get a badges from a specific user"
-      description: "Get a badges from a specific user"
+      summary: "Get all badges from a specific user"
+      description: "Get all badges from a specific user"
       operationId: "getBadgesFromUser"
       parameters:
         - $ref: '#/parameters/token'
@@ -406,8 +406,26 @@ paths:
             type: array
             items:
               $ref: "#/definitions/badgeRead"
-        400:
-          description: "something very very bad happened"
+  /users/{userId}/pointScales:
+    parameters:
+      - $ref: '#/parameters/userId'
+    get:
+      tags:
+        - "users"
+      summary: "Get all pointScales from a specific user"
+      description: "Get all pointScales from a specific user"
+      operationId: "getPointScalesFromUser"
+      parameters:
+        - $ref: '#/parameters/token'
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/pointScaleRead'
 
 definitions:
   pointScaleWrite:
@@ -488,7 +506,6 @@ definitions:
     required:
       - id
       - ifEventType
-      - then
     properties:
       id:
         type: integer
@@ -512,8 +529,6 @@ definitions:
     required:
       - userId
       - type
-      - propertyName
-      - propertyDefinition
     properties:
       userId:
         type: integer

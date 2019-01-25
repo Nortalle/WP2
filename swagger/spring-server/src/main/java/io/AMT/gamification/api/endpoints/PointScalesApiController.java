@@ -5,7 +5,10 @@ import io.AMT.gamification.api.model.PointScaleRead;
 import io.AMT.gamification.api.model.PointScaleWrite;
 import io.AMT.gamification.api.services.ConverterService;
 import io.AMT.gamification.entities.PointScaleEntity;
+import io.AMT.gamification.repositories.BadgeAwardRepository;
+import io.AMT.gamification.repositories.PointScaleAwardRepository;
 import io.AMT.gamification.repositories.PointScaleRepository;
+import io.AMT.gamification.repositories.RulesRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,12 @@ public class PointScalesApiController implements PointScalesApi {
 
     @Autowired
     PointScaleRepository pointScaleRepository;
+
+    @Autowired
+    RulesRepository rulesRepository;
+
+    @Autowired
+    PointScaleAwardRepository pointScaleAwardRepository;
 
     @Autowired
     ConverterService converterService;
@@ -66,6 +75,8 @@ public class PointScalesApiController implements PointScalesApi {
             return ResponseEntity.status(401).build();
         }
 
+        rulesRepository.deleteRuleEntitiesByPointScale_Id(pointScaleId);
+        pointScaleAwardRepository.deletePointScaleAwardEntityByPointScaleEntity_Id(pointScaleId);
         pointScaleRepository.delete(pointScaleId);
 
         return ResponseEntity.noContent().build();

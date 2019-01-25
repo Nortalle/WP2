@@ -5,11 +5,14 @@ import io.AMT.gamification.api.model.BadgeRead;
 import io.AMT.gamification.api.model.BadgeWrite;
 import io.AMT.gamification.api.services.ConverterService;
 import io.AMT.gamification.entities.BadgeEntity;
+import io.AMT.gamification.repositories.BadgeAwardRepository;
 import io.AMT.gamification.repositories.BadgesRepository;
+import io.AMT.gamification.repositories.RulesRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -26,6 +29,12 @@ public class BadgesApiController implements BadgesApi {
 
     @Autowired
     BadgesRepository badgesRepository;
+
+    @Autowired
+    BadgeAwardRepository badgeAwardRepository;
+
+    @Autowired
+    RulesRepository rulesRepository;
 
     @Autowired
     ConverterService converterService;
@@ -64,6 +73,8 @@ public class BadgesApiController implements BadgesApi {
             return ResponseEntity.status(401).build();
         }
 
+        rulesRepository.deleteRuleEntitiesByBadge_Id(badgeId);
+        badgeAwardRepository.deleteBadgeAwardEntitiesByBadgeEntity_Id(badgeId);
         badgesRepository.delete(badgeId);
 
         return ResponseEntity.noContent().build();//204

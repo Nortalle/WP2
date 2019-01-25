@@ -3,11 +3,9 @@ package io.AMT.gamification.api.endpoints;
 import io.AMT.gamification.api.EventsApi;
 import io.AMT.gamification.api.model.Event;
 import io.AMT.gamification.api.services.ConverterService;
-import io.AMT.gamification.entities.BadgeAwardEntity;
-import io.AMT.gamification.entities.BadgeEntity;
-import io.AMT.gamification.entities.RuleEntity;
-import io.AMT.gamification.entities.UserEntity;
+import io.AMT.gamification.entities.*;
 import io.AMT.gamification.repositories.BadgeAwardRepository;
+import io.AMT.gamification.repositories.PointScaleAwardRepository;
 import io.AMT.gamification.repositories.RulesRepository;
 import io.AMT.gamification.repositories.UsersRepository;
 import io.swagger.annotations.ApiParam;
@@ -22,18 +20,29 @@ import java.util.List;
 @Controller
 public class EventsApiController implements EventsApi {
 
-    @Autowired
+    private final
     RulesRepository rulesRepository;
 
-    @Autowired
+    private final
     UsersRepository usersRepository;
 
-    @Autowired
+    private final
     BadgeAwardRepository badgeAwardRepository;
 
+    private final
+    PointScaleAwardRepository pointScaleAwardRepository;
+
+    private final
+    ConverterService converterService;
 
     @Autowired
-    ConverterService converterService;
+    public EventsApiController(RulesRepository rulesRepository, UsersRepository usersRepository, BadgeAwardRepository badgeAwardRepository, PointScaleAwardRepository pointScaleAwardRepository, ConverterService converterService) {
+        this.rulesRepository = rulesRepository;
+        this.usersRepository = usersRepository;
+        this.badgeAwardRepository = badgeAwardRepository;
+        this.pointScaleAwardRepository = pointScaleAwardRepository;
+        this.converterService = converterService;
+    }
 
     @Override
     public ResponseEntity<Void> createEvent(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
@@ -46,15 +55,24 @@ public class EventsApiController implements EventsApi {
         }
 
         List<RuleEntity> ruleEntityList = rulesRepository.findAllByApiKeyAndIfEventType(authorization, body.getType());
-        //List<RuleEntity> ruleEntityList = rulesRepository.findAllByApiKey(authorization, body.getType());
 
-        if(!ruleEntityList.isEmpty()){
-            BadgeEntity badgeToWin = ruleEntityList.get(0).getBadge();
-            if(badgeToWin != null){
+        for(RuleEntity ruleEntity: ruleEntityList){
+
+            BadgeEntity badgeToWin = ruleEntity.getBadge();
+
+            if(badgeToWin != null) {
                 BadgeAwardEntity badgeAwardEntity = converterService.toBadgeAwardEntity(badgeToWin, userEntity);
                 badgeAwardRepository.save(badgeAwardEntity);
             }
+
+            PointScaleEntity pointScaleToWin = ruleEntity.getPointScale();
+
+            if(pointScaleToWin != null) {
+                PointScaleAwardEntity pointScaleAwardEntity = converterService.toPointScaleAwardEntity(pointScaleToWin, userEntity, ruleEntity.getThenAwardPoint());
+                pointScaleAwardRepository.save(pointScaleAwardEntity);
+            }
         }
+
 
         return ResponseEntity.ok().build();
     }
