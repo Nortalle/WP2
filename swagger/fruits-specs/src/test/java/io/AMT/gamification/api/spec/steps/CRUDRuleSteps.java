@@ -59,7 +59,7 @@ public class CRUDRuleSteps {
         assertNotNull(ruleWrite);
     }
 
-    @When("^I POST it to the /rule endpoint$")
+    @When("^I POST it to the /rules endpoint$")
     public void i_POST_it_to_the_rule_endpoint() throws Throwable {
         try {
             String token = "salut";
