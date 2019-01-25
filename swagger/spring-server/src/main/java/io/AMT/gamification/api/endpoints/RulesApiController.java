@@ -4,6 +4,7 @@ import io.AMT.gamification.api.RulesApi;
 import io.AMT.gamification.api.model.RuleRead;
 import io.AMT.gamification.api.model.RuleWrite;
 import io.AMT.gamification.api.services.ConverterService;
+import io.AMT.gamification.entities.PointScaleEntity;
 import io.AMT.gamification.entities.RuleEntity;
 import io.AMT.gamification.repositories.BadgesRepository;
 import io.AMT.gamification.repositories.RulesRepository;
@@ -98,7 +99,15 @@ public class RulesApiController implements RulesApi {
                                            @ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                            @ApiParam(value = "rule that needs to be update in the store"  ) @RequestBody RuleWrite body) {
 
-        RuleEntity ruleEntity = converterService.toRuleEntity(body, authorization, ruleId);
+        RuleEntity ruleEntity = rulesRepository.findOne(ruleId);
+
+        if(ruleEntity == null){
+            return ResponseEntity.notFound().build();//404
+        } else if (!ruleEntity.getApiKey().equals(authorization)){
+            return ResponseEntity.status(401).build();
+        }
+
+        ruleEntity = converterService.toRuleEntity(body, authorization, ruleId);
         rulesRepository.save(ruleEntity);
 
         return ResponseEntity.status(204).build();

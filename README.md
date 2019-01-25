@@ -101,8 +101,6 @@ pointScale :
 }
 ```
 
-
-
 # Test the Gamification microservice by running the executable specification
 
 You can use the Cucumber project to validate the API implementation. Do this when the server is running.

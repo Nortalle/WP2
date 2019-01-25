@@ -43,9 +43,12 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<String> createBadge(@ApiParam(value = "" ,required=true ) @RequestHeader(value="authorization", required=true) String authorization,
                                               @ApiParam(value = "badge to create"  ) @RequestBody BadgeWrite body) {
 
-        //BadgeEntity badgeEntity = badgesRepository.findByApiKeyAndName(authorization, body.getName());
+        BadgeEntity badgeEntity = badgesRepository.findByApiKeyAndName(authorization, body.getName());
 
-        BadgeEntity badgeEntity = null;
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("badgeEntity : " +badgeEntity);
+        System.out.println("----------------------------------------------------------------------");
+        //BadgeEntity badgeEntity = null;
 
         if(badgeEntity == null) {
             badgeEntity = converterService.toBadgeEntity(body, authorization);
