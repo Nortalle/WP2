@@ -1,5 +1,5 @@
 FROM openjdk:8
-COPY ./full-project.jar .
+COPY ./swagger-spring.jar .
 
 ## Release config
-CMD java -jar full-project.jar
+CMD java -jar swagger-spring.jar
