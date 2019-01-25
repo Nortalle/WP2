@@ -166,12 +166,133 @@ public class CRUDBadgeSteps {
         assertEquals(expected, badgeRead);
     }
 
-    @Then("^I receive a (\\d+) status code for badge update$")
-    public void i_receive_a_status_code_for_badge_update(int arg1) throws Throwable {
+    @Then("^I receive a (\\d+) status code for badge no content$")
+    public void i_receive_a_status_code_for_badge_no_content(int arg1) throws Throwable {
         assertEquals(204, lastStatusCode);
     }
 
+    @When("^I GET to the /badges/badgeId with wrong badgeId$")
+    public void i_GET_to_the_badges_badgeId_with_wrong_badgeId() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.getBadgeWithHttpInfo(badgeId + 1, token1);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
 
+    @Then("^I recieve a (\\d+) error not found$")
+    public void i_recieve_a_error(int arg1) throws Throwable {
+        assertEquals(404, lastStatusCode);
+    }
+
+    @When("^I PUT it to the /badges/badgeId endpoint with wrong token$")
+    public void i_PUT_it_to_the_badges_badgeId_endpoint_with_wrong_token() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.updateBadgeWithHttpInfo(badgeId, wrongToken, newBadge);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+    @Then("^I receive a (\\d+) status code for badge update unothorized$")
+    public void i_receive_a_status_code_for_badge_update_unothorized(int arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertEquals(401, lastStatusCode);
+    }
+
+    @When("^I PUT it to the /badges/badgeId endpoint with wrong badgeId$")
+    public void i_PUT_it_to_the_badges_badgeId_endpoint_with_wrong_badgeId() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.updateBadgeWithHttpInfo(badgeId + 1, token1, newBadge);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+    @When("^I DETETE to the /badges/badgeId endpoint with wrong token$")
+    public void i_DETETE_to_the_badges_badgeId_endpoint_with_wrong_token() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.deleteBadgeWithHttpInfo(badgeId, wrongToken);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+    @When("^I DETETE to the /badges/badgeId endpoint with wrong badgeId$")
+    public void i_DETETE_to_the_badges_badgeId_endpoint_with_wrong_badgeId() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.deleteBadgeWithHttpInfo(badgeId + 1, token1);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+    @When("^I DETETE to the /badges/badgeId endpoint for all badges$")
+    public void i_DETETE_to_the_badges_badgeId_endpoint_for_all_badges() throws Throwable {
+        for(BadgeRead badgeRead : badgeReads){
+            try {
+                lastApiResponse = badgesApi.deleteBadgeWithHttpInfo(badgeRead.getId(), token1);
+                lastApiCallThrewException = false;
+                lastApiException = null;
+                lastStatusCode = lastApiResponse.getStatusCode();
+            } catch (ApiException e) {
+                lastApiCallThrewException = true;
+                lastApiResponse = null;
+                lastApiException = e;
+                lastStatusCode = lastApiException.getCode();
+            }
+        }
+    }
+
+    @Then("^I recieve an empty list of badges$")
+    public void i_recieve_an_empty_list_of_badges() throws Throwable {
+        Assert.assertTrue(badgeReads.isEmpty());
+    }
+
+    @Then("^I delete the created badge$")
+    public void i_delete_the_created_badge() throws Throwable {
+        try {
+            lastApiResponse = badgesApi.deleteBadgeWithHttpInfo(badgeId, token1);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
 
     private void getIdFromLocation(String location){
         String[] segments = location.split("/");
@@ -179,7 +300,5 @@ public class CRUDBadgeSteps {
         String idStr = almostIdStr.substring(0,almostIdStr.length()-1);
         badgeId = Long.parseLong(idStr);
     }
-
-
 
 }
